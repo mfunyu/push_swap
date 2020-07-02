@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 16:13:32 by mfunyu            #+#    #+#             */
-/*   Updated: 2020/07/01 13:45:57 by mfunyu           ###   ########.fr       */
+/*   Updated: 2020/07/02 09:03:03 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,37 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		return (size + ft_strlen(src));
 	ft_strlcpy(dst + d_len, src, size - d_len);
 	return (d_len + ft_strlen(src));
+}
+
+void	*ft_memset(void *s, int c, unsigned int n)
+{
+	unsigned int	i;
+	unsigned char	*s_copy;
+
+	i = 0;
+	s_copy = (unsigned char *)s;
+	while (i < n)
+	{
+		s_copy[i] = (unsigned char)c;
+		i++;
+	}
+	return (s);
+}
+
+void	*ft_calloc(unsigned int nmemb, unsigned int size)
+{
+	unsigned char	*new;
+
+	if (nmemb == 0 || size == 0)
+	{
+		nmemb = 1;
+		size = 1;
+	}
+	new = malloc(nmemb * size);
+	if (!new)
+		return (NULL);
+	ft_memset(new, '\0', nmemb * size);
+	return (new);
 }
 
 size_t	ft_strlen(const char *str)
