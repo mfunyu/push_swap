@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: u_2 <u_2@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/30 18:32:49 by mfunyu            #+#    #+#             */
-/*   Updated: 2020/07/04 22:27:43 by u_2              ###   ########.fr       */
+/*   Updated: 2020/07/04 23:31:02 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		newline_in_str(char **line, char **str, char **save, int END)
 			}
 			return (1);
 		}
-		*str = NULL;
+		free(*save);
 		*save = NULL;
 		return (1);
 	}
@@ -70,9 +70,6 @@ int		get_next_line(int fd, char **line)
 
 	done = 0;
 	*line = NULL;
-	buf = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-	if (!buf)
-		return (-1);
 	// saveがあったら
 	if (save)
 	{
@@ -88,7 +85,9 @@ int		get_next_line(int fd, char **line)
 			return (0);
 		}
 	}
-	// printf("F1: before while\n");
+	buf = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	if (!buf)
+		return (-1);
 	while (!done && (bytes = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		if (bytes < BUFFER_SIZE)
@@ -98,9 +97,10 @@ int		get_next_line(int fd, char **line)
 		buf[bytes] = '\0';
 		done = newline_in_str(line, &buf, &save, END);
 		if (done)
+		{
+			free(buf);
 			return (1);
-		// return (1);
-
+		}
 	}
 	if (done == -1 || bytes == -1)
 	{

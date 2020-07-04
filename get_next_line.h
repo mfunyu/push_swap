@@ -6,14 +6,11 @@
 // # include <string.h>
 
 int		get_next_line(int fd, char **line);
-void	ft_strlcpy(char *dst, const char *src, size_t size);
+int		newline_in_str(char **line, char **str, char **save, int END);
 char	*ft_strchr(const char *s, int c);
-size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *str);
 void	*ft_calloc(unsigned int nmemb, unsigned int size);
-void	*ft_memset(void *s, int c, unsigned int n);
 char	*ft_strldup(const char *s, int len);
-// char	*ft_strljoin(char const *s1, char const *s2, int len);
 char	*ft_strljoin(char *s1, char *s2, int len);
 
 # endif
