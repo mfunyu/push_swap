@@ -6,7 +6,7 @@
 /*   By: u_2 <u_2@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 16:13:32 by mfunyu            #+#    #+#             */
-/*   Updated: 2020/07/04 11:44:59 by u_2              ###   ########.fr       */
+/*   Updated: 2020/07/04 19:10:33 by u_2              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,47 @@ void	*ft_memset(void *s, int c, unsigned int n)
 	}
 	return (s);
 }
-
-char	*ft_strdup(const char *s)
+// ft_strlen(s) == len
+char	*ft_strldup(const char *s, int len)
 {
-	int		len;
 	char	*dup;
 
-	len = ft_strlen(s);
 	dup = (char *)malloc((len + 1) * sizeof(char));
 	if (!dup)
 		return (NULL);
 	ft_strlcpy(dup, s, len + 1);
 	return (dup);
 }
+
+char	*ft_strljoin(char *s1, char *s2, int len)
+{
+	char			*joined;
+	unsigned int	size;
+	unsigned int	i;
+
+    i = 0;
+	if (!s2)
+		return (NULL);
+	size = len;
+	if (*s1)
+		size += ft_strlen(s1);
+	joined = (char *)malloc((size + 1) * sizeof(char));
+	if (!joined)
+		return (NULL);
+	while (*s1)
+	{
+		joined[i++] = *s1++;
+	}
+	while (len--)
+	{
+		joined[i++] = *s2++;
+	}
+	joined[i] = '\0';
+	// free(s1);
+	// free(s2);
+	return (joined);
+}
+
 
 void	*ft_calloc(unsigned int nmemb, unsigned int size)
 {

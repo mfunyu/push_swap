@@ -12,6 +12,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *str);
 void	*ft_calloc(unsigned int nmemb, unsigned int size);
 void	*ft_memset(void *s, int c, unsigned int n);
-char	*ft_strdup(const char *s);
+char	*ft_strldup(const char *s, int len);
+// char	*ft_strljoin(char const *s1, char const *s2, int len);
+char	*ft_strljoin(char *s1, char *s2, int len);
 
 # endif
