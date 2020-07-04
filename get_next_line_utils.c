@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunyu <mfunyu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: u_2 <u_2@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 16:13:32 by mfunyu            #+#    #+#             */
-/*   Updated: 2020/07/02 09:03:03 by mfunyu           ###   ########.fr       */
+/*   Updated: 2020/07/04 11:44:59 by u_2              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ void	*ft_memset(void *s, int c, unsigned int n)
 		i++;
 	}
 	return (s);
+}
+
+char	*ft_strdup(const char *s)
+{
+	int		len;
+	char	*dup;
+
+	len = ft_strlen(s);
+	dup = (char *)malloc((len + 1) * sizeof(char));
+	if (!dup)
+		return (NULL);
+	ft_strlcpy(dup, s, len + 1);
+	return (dup);
 }
 
 void	*ft_calloc(unsigned int nmemb, unsigned int size)
