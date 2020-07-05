@@ -10,7 +10,7 @@ int		newline_in_str(char **line, char **str, char **save, int END);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *str);
 void	*ft_calloc(unsigned int nmemb, unsigned int size);
-char	*ft_strldup(const char *s, int len);
+char	*ft_strldup(char *s, int len, int need_free);
 char	*ft_strljoin(char *s1, char *s2, int len);
 
 # endif

@@ -6,13 +6,13 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 16:13:32 by mfunyu            #+#    #+#             */
-/*   Updated: 2020/07/04 22:56:41 by mfunyu           ###   ########.fr       */
+/*   Updated: 2020/07/05 09:12:39 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strldup(const char *s, int len)
+char	*ft_strldup(char *s, int len, int need_free)
 {
 	char	*dup;
 	int		i;
@@ -27,6 +27,8 @@ char	*ft_strldup(const char *s, int len)
 		i++;
 	}
 	dup[i] = '\0';
+	if (need_free)
+		free(s);
 	return (dup);
 }
 
@@ -45,14 +47,16 @@ char	*ft_strljoin(char *s1, char *s2, int len)
 	joined = (char *)malloc((size + 1) * sizeof(char));
 	if (!joined)
 		return (NULL);
-	while (*s1)
+	while (s1[i])
 	{
-		joined[i++] = *s1++;
+		joined[i] = s1[i];
+		i++;
 	}
 	while (len--)
 	{
 		joined[i++] = *s2++;
 	}
+	free(s1);
 	joined[i] = '\0';
 	return (joined);
 }
