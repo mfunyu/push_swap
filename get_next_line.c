@@ -6,12 +6,11 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/30 18:32:49 by mfunyu            #+#    #+#             */
-/*   Updated: 2020/07/06 17:52:08 by mfunyu           ###   ########.fr       */
+/*   Updated: 2020/07/06 20:09:16 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 static int		invaild(int fd)
 {
