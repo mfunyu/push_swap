@@ -6,13 +6,13 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 16:13:32 by mfunyu            #+#    #+#             */
-/*   Updated: 2020/07/05 09:12:39 by mfunyu           ###   ########.fr       */
+/*   Updated: 2020/07/06 17:51:03 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strldup(char *s, int len, int need_free)
+char		*ft_strldup(char *s, int len)
 {
 	char	*dup;
 	int		i;
@@ -27,12 +27,10 @@ char	*ft_strldup(char *s, int len, int need_free)
 		i++;
 	}
 	dup[i] = '\0';
-	if (need_free)
-		free(s);
 	return (dup);
 }
 
-char	*ft_strljoin(char *s1, char *s2, int len)
+char		*ft_strljoin(char *s1, char *s2, int len)
 {
 	char			*joined;
 	unsigned int	size;
@@ -61,23 +59,6 @@ char	*ft_strljoin(char *s1, char *s2, int len)
 	return (joined);
 }
 
-void	*ft_calloc(unsigned int nmemb, unsigned int size)
-{
-	unsigned char	*new;
-	unsigned int	i;
-
-	i = 0;
-	new = malloc(nmemb * size);
-	if (!new)
-		return (NULL);
-	while (i < nmemb * size)
-	{
-		new[i] = '\0';
-		i++;
-	}
-	return (new);
-}
-
 size_t	ft_strlen(const char *str)
 {
 	size_t	len;
@@ -88,17 +69,4 @@ size_t	ft_strlen(const char *str)
 		len++;
 	}
 	return (len);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s)
-	{
-		if (*s - c == 0)
-			return ((char *)s);
-		s++;
-	}
-	if (c == '\0')
-		return ((char *)s);
-	return (NULL);
 }
