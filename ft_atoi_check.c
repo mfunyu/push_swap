@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 13:03:35 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/04/09 11:20:46 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/04/09 13:28:46 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_atoi_check(const char *n, int *error)
 			return (0);
 		nb = nb * 10 + (*n++ - '0');
 	}
-	if (*n == NULL)
+	if (*n == '\0')
 		*error = SUCCESS;
 	return ((int)(nb * sign));
 }
