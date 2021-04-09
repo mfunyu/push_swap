@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 13:03:35 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/04/09 13:28:46 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/04/09 21:13:42 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	ft_atoi_check(const char *n, int *error)
 	}
 	while (ft_isdigit(*n))
 	{
+		nb = nb * 10 + (*n++ - '0');
 		if (nb * sign < INT_MIN || INT_MAX < nb * sign)
 			return (0);
-		nb = nb * 10 + (*n++ - '0');
 	}
 	if (*n == '\0')
 		*error = SUCCESS;
