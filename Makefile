@@ -6,7 +6,7 @@
 #    By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/23 15:26:26 by mfunyu            #+#    #+#              #
-#    Updated: 2021/04/09 13:29:12 by mfunyu           ###   ########.fr        #
+#    Updated: 2021/05/18 22:52:29 by mfunyu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS	:= ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 			ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c \
 			ft_itoa.c ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 			ft_lstnew.c \
+			ft_lstnew_dup.c \
 			ft_lstadd_front.c \
 			ft_lstsize.c \
 			ft_lstlast.c \
@@ -30,7 +31,7 @@ SRCS	:= ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 			ft_atoi_check.c
 OBJS	:= $(SRCS:.c=.o)
 CC		:= gcc
-CFLAGS	:= -Wall -Wextra -Werror
+CFLAGS	:= -g -Wall -Wextra -Werror
 
 all		: $(NAME)
 

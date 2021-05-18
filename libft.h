@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 17:15:38 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/17 09:13:56 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/18 22:44:11 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 
 t_list				*ft_lstnew(void *content);
+t_list				*ft_lstnew_dup(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 t_list				*ft_lstlast(t_list *lst);
 int					ft_lstsize(t_list *lst);
