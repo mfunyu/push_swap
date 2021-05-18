@@ -22,6 +22,7 @@ CHECKER_SRCS_FILES	:= checker.c \
 					operation_swap.c \
 					operation_rotate.c \
 					operation_revrotate.c \
+					is_sorted.c \
 					\
 					dbg/print_stack.c
 CHECKER_SRCS		:= $(addprefix $(CHECKER_SRCS_DIR)/, $(CHECKER_SRCS_FILES)) \

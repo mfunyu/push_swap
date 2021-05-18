@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:25:56 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/18 18:47:52 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/18 21:16:36 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ bool	is_valid_arg(int ac, char **av)
 	if (ac <= 1)
 		return (false);
 	i = 0;
+	error = 0;
 	while (av[++i] && !error)
 		ft_atoi_check(av[i], &error);
 	if (error)
@@ -90,6 +91,7 @@ int	init_stack_a(t_stack **stack_a, char **av)
 int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
+	t_stack	*stack_b;
 	t_list	*instructions;
 
 	if (!is_valid_arg(ac, av))
@@ -99,7 +101,14 @@ int	main(int ac, char **av)
 	print_stack(stack_a, NULL, "initial");
 	if (read_instructions(&stack_a, &instructions) == ERROR)
 		return (0);
-	if (execute_instructions(&stack_a, instructions) == ERROR)
+	if (execute_instructions(&stack_a, &stack_b, instructions) == ERROR)
 		return (0);
+	if (is_sorted(stack_a, stack_b))
+		ft_putendl_fd("OK", 1);
+	else
+		ft_putendl_fd("KO", 1);
+	ft_lstclear(&instructions, free);
+	stacklst_clear(&stack_a);
+	stacklst_clear(&stack_b);
 	return (0);
 }

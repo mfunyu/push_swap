@@ -26,21 +26,20 @@ void	execute_operation(char *operation, t_stack **stack_a, t_stack **stack_b)
 		operation_revrotate_both(stack_a, stack_b);
 }
 
-int	execute_instructions(t_stack **stack_a, t_list *instructions)
+int	execute_instructions(t_stack **stack_a, t_stack **stack_b,
+												t_list *instructions)
 {
-	t_stack		*stack_b;
 	t_list		*operation;
 
-	stack_b = stacklst_nil();
+	*stack_b = stacklst_nil();
+	if (!(*stack_b))
+		exit(EXIT_FAILURE);
 	operation = instructions;
 	while (operation)
 	{
-		execute_operation(operation->content, stack_a, &stack_b);
-		print_stack(*stack_a, stack_b, operation->content);
+		execute_operation(operation->content, stack_a, stack_b);
+		print_stack(*stack_a, *stack_b, operation->content);
 		operation = operation->next;
 	}
-	ft_lstclear(&instructions, free);
-	stacklst_clear(stack_a);
-	stacklst_clear(&stack_b);
 	return (0);
 }

@@ -36,7 +36,7 @@ typedef struct s_stack
 /*
 ** dbg
 */
-int	print_stack(t_stack *lst_a, t_stack *lst_b, char *title);
+int		print_stack(t_stack *lst_a, t_stack *lst_b, char *title);
 
 /*
 ** stack_list
@@ -59,7 +59,8 @@ int		read_instructions(t_stack **stack_a, t_list **instructions);
 /*
 ** executer.c
 */
-int		execute_instructions(t_stack **stack_a, t_list *instructions);
+int		execute_instructions(t_stack **stack_a, t_stack **stack_b,
+			t_list *instructions);
 
 /*
 ** operations
@@ -71,6 +72,8 @@ void	operation_rotate_one(t_stack **stack);
 void	operation_rotate_both(t_stack **stack_a, t_stack **stack_b);
 void	operation_revrotate_one(t_stack **stack);
 void	operation_revrotate_both(t_stack **stack_a, t_stack **stack_b);
+
+bool	is_sorted(t_stack *stack_a, t_stack *stack_b);
 
 /*
 ** utils
