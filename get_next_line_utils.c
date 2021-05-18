@@ -6,13 +6,36 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 16:13:32 by mfunyu            #+#    #+#             */
-/*   Updated: 2020/07/06 19:58:04 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/04/10 13:51:04 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char		*ft_strldup(char *s, int len)
+char	*ft_strldup_check(char *s, int len, int *error)
+{
+	char	*dup;
+	int		i;
+
+	if (*error)
+		return (NULL);
+	i = 0;
+	dup = (char *)malloc((len + 1) * sizeof(char));
+	if (!dup)
+	{
+		*error = 1;
+		return (NULL);
+	}
+	while (i < len && s[i])
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
+
+char	*ft_strldup(char *s, int len)
 {
 	char	*dup;
 	int		i;
@@ -30,7 +53,7 @@ char		*ft_strldup(char *s, int len)
 	return (dup);
 }
 
-char		*ft_strljoin(char *s1, char *s2, int len)
+char	*ft_strljoin(char *s1, char *s2, int len)
 {
 	char			*joined;
 	unsigned int	size;
@@ -59,7 +82,7 @@ char		*ft_strljoin(char *s1, char *s2, int len)
 	return (joined);
 }
 
-size_t		ft_strlen(const char *str)
+size_t	ft_strlen(const char *str)
 {
 	size_t	len;
 
@@ -69,4 +92,18 @@ size_t		ft_strlen(const char *str)
 		len++;
 	}
 	return (len);
+}
+
+int	newline_index(char *s)
+{
+	int		i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '\n')
+			return (i + 1);
+		i++;
+	}
+	return (0);
 }
