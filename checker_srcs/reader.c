@@ -27,28 +27,38 @@ bool	is_valid_operation_type(char *operation)
 	return (false);
 }
 
-int	read_instructions(t_stack **stack_a, t_list **instructions)
+static int	get_each_operation( t_list **instructions)
 {
+	t_list	*new;
 	char	*operator;
-	int		error;
 	int		ret;
 
-	ret = 1;
-	error = 0;
-	*instructions = NULL;
-	while (!error && ret)
+	while (1)
 	{
 		ret = get_next_line(0, &operator);
-		if (ret && !is_valid_operation_type(operator))
-			error = 1;
-		if (!error && ret && ft_lstadd_back(instructions,
-				ft_lstnew(ft_strdup(operator))) == ERROR)
+		if (ret < 0)
+			exit(EXIT_FAILURE);
+		if (ret == 0)
+			return (SUCCESS);
+		if (!is_valid_operation_type(operator))
+		{
+			null_free(&operator);
+			return (ERROR);
+		}
+		new = ft_lstnew_dup(operator);
+		if (!new)
+			exit(EXIT_FAILURE);
+		if (ft_lstadd_back(instructions, new) == ERROR)
 			exit(EXIT_FAILURE);
 		null_free(&operator);
 	}
-	if (ret < 0)
-		exit(EXIT_FAILURE);
-	if (error || !(*instructions))
+	return (SUCCESS);
+}
+
+int	read_instructions(t_stack **stack_a, t_list **instructions)
+{
+	*instructions = NULL;
+	if (get_each_operation(instructions) == ERROR)
 	{
 		stacklst_clear(stack_a);
 		ft_lstclear(instructions, free);
