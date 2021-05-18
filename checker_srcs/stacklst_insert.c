@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   stacklst_insert.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/08 17:25:56 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/04/10 09:12:15 by mfunyu           ###   ########.fr       */
+/*   Created: 2021/04/10 09:39:02 by mfunyu            #+#    #+#             */
+/*   Updated: 2021/05/18 12:44:51 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-int		main(int ac, char **av)
+void	stacklst_insert(t_stack *a, t_stack *b, t_stack *new)
 {
-	int		i;
-	int		error;
-
-	if (ac <= 1)
-		return (0);
-	i = 1;
-	while (av[i])
-	{
-		ft_atoi_check(av[i], &error);
-		if (error)
-		{
-			ft_putendl_fd("Error", 1);
-			return (0);
-		}
-		i++;
-
-	}
-	return (0);
+	a->next = new;
+	b->prev = new;
+	new->prev = a;
+	new->next = b;
 }

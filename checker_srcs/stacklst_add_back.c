@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   stacklst_add_back.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/08 17:58:34 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/04/08 18:02:34 by mfunyu           ###   ########.fr       */
+/*   Created: 2020/06/30 15:49:42 by mfunyu            #+#    #+#             */
+/*   Updated: 2021/05/18 13:07:11 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "checker.h"
 
-int		main(int ac, char **av)
+void	stacklst_add_back(t_stack **lst, t_stack *new)
 {
+	t_stack	*last;
 
-	printf("%d", atoi(av[1]));
-	return (0);
+	if (*lst == NULL)
+	{
+		*lst = new;
+	}
+	else
+	{
+		last = stacklst_last(*lst);
+		last->next = new;
+		new->prev = last;
+		// stacklst_insert((*lst)->prev->prev, (*lst)->prev, new);
+	}
 }
