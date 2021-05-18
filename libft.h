@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 17:15:38 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/04/09 11:32:43 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/17 09:13:56 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdbool.h>
 
 # define SUCCESS 0
-# define ERROR 1
+# define ERROR -1
 
 typedef struct s_list
 {
@@ -69,7 +69,7 @@ t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 t_list				*ft_lstlast(t_list *lst);
 int					ft_lstsize(t_list *lst);
-void				ft_lstadd_back(t_list **lst, t_list *new);
+int					ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstdelone(t_list *lst, void (*del)(void*));
 void				ft_lstclear(t_list **lst, void (*del)(void*));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
