@@ -31,9 +31,6 @@ int	execute_instructions(t_stack **stack_a, t_stack **stack_b,
 {
 	t_list		*operation;
 
-	*stack_b = stacklst_nil();
-	if (!(*stack_b))
-		exit(EXIT_FAILURE);
 	operation = instructions;
 	while (operation)
 	{
