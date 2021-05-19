@@ -31,7 +31,7 @@ LIBFT		:= libft
 LIBS		:= -L$(LIBFT) -lft
 CC			:= gcc
 CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES)
-# CFLAGS		+= -fsanitize=address
+CFLAGS		+= -fsanitize=address
 
 all		: $(NAME)
 

@@ -16,6 +16,8 @@
 // delete later
 # include "utils.h"
 
+void	print_instructions(t_list *operation);
+
 /*
 ** stack_list
 */
@@ -42,7 +44,5 @@ void	operation_rotate_one(t_stack **stack);
 void	operation_rotate_both(t_stack **stack_a, t_stack **stack_b);
 void	operation_revrotate_one(t_stack **stack);
 void	operation_revrotate_both(t_stack **stack_a, t_stack **stack_b);
-
-bool	is_sorted(t_stack *stack_a, t_stack *stack_b);
 
 #endif

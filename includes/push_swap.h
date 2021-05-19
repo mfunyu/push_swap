@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:20:53 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/19 13:16:32 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/19 17:00:20 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	sort_two(t_stack **stack, t_list **instructions, t_stack_type type);
 void	record_swap(t_stack **stack, t_list **instructions,
 			t_stack_type type);
 void	sort_three(t_stack **stack_a, t_list **instructions);
+void	sort_six(t_stack **stack_a, t_stack **stack_b, t_list **instructions, int len);
 
 /*
 ** print

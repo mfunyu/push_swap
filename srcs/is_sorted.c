@@ -1,4 +1,4 @@
-#include "checker.h"
+#include "utils.h"
 
 bool	is_sorted(t_stack *stack_a, t_stack *stack_b)
 {
@@ -12,6 +12,7 @@ bool	is_sorted(t_stack *stack_a, t_stack *stack_b)
 	{
 		if (stack_a->elem < prev)
 			return (false);
+		prev = stack_a->elem;
 		stack_a = stack_a->next;
 	}
 	return (true);
