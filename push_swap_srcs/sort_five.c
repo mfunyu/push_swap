@@ -10,7 +10,7 @@ int	get_index_smallest(t_stack *stack)
 	s_index = 0;
 	smallest = stack->elem;
 	stack = stack->next;
-	while (i++ < 5 && !stack->nil)
+	while (i++ < 4 && !stack->nil)
 	{
 		if (stack->elem < smallest)
 		{
@@ -22,9 +22,10 @@ int	get_index_smallest(t_stack *stack)
 	return (s_index);
 }
 
-void	sort_six(t_stack **stack_a, t_stack **stack_b, t_list **instructions, int len)
+void	sort_five(t_stack **stack_a, t_stack **stack_b, t_list **instructions, int len)
 {
-	int		s_index;
+	int					s_index;
+	t_operation_name	direction;
 
 	if (is_sorted(*stack_a, *stack_b))
 		return ;
@@ -37,9 +38,16 @@ void	sort_six(t_stack **stack_a, t_stack **stack_b, t_list **instructions, int l
 	else
 	{
 		s_index = get_index_smallest(*stack_a);
+		if (s_index < len / 2)
+			direction = ra;
+		else
+		{
+			direction = rra;
+			s_index = len - s_index;
+		}
 		while (s_index--)
-			exec_add_instructions(stack_a, NULL, instructions, ra);
+			exec_add_instructions(stack_a, NULL, instructions, direction);
 		exec_add_instructions(stack_a, stack_b, instructions, pb);
-		sort_six(stack_a, stack_b, instructions, len - 1);
+		sort_five(stack_a, stack_b, instructions, len - 1);
 	}
 }
