@@ -6,11 +6,11 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 09:39:02 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/18 14:15:34 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/19 00:46:17 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "utils.h"
 
 t_stack	*stacklst_new(int elem)
 {

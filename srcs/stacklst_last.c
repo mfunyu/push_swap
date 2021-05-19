@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stacklst_clear.c                                   :+:      :+:    :+:   */
+/*   stacklst_last.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/30 15:49:42 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/18 17:23:17 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/19 00:46:04 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "utils.h"
 
-void	stacklst_clear(t_stack **lst)
+t_stack	*stacklst_last(t_stack *lst)
 {
-	t_stack	*next;
-
-	(*lst)->prev->next = NULL;
-	while (*lst)
+	if (!lst)
+		return (lst);
+	while (lst->next)
 	{
-		next = (*lst)->next;
-		null_free((char **)(lst));
-		*lst = next;
+		lst = lst->next;
 	}
-	lst = NULL;
+	return (lst);
 }

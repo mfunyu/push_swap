@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stacklst_insert.c                                  :+:      :+:    :+:   */
+/*   stacklst_clear.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/10 09:39:02 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/18 12:44:51 by mfunyu           ###   ########.fr       */
+/*   Created: 2020/06/30 15:49:42 by mfunyu            #+#    #+#             */
+/*   Updated: 2021/05/19 00:46:26 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "utils.h"
 
-void	stacklst_insert(t_stack *a, t_stack *b, t_stack *new)
+void	stacklst_clear(t_stack **lst)
 {
-	a->next = new;
-	b->prev = new;
-	new->prev = a;
-	new->next = b;
+	t_stack	*next;
+
+	if ((*lst)->prev)
+		(*lst)->prev->next = NULL;
+	while (*lst)
+	{
+		next = (*lst)->next;
+		null_free((char **)(lst));
+		*lst = next;
+	}
+	lst = NULL;
 }

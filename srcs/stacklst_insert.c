@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   stacklst_insert.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/14 22:20:12 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/17 02:25:19 by mfunyu           ###   ########.fr       */
+/*   Created: 2021/04/10 09:39:02 by mfunyu            #+#    #+#             */
+/*   Updated: 2021/05/19 00:45:32 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "utils.h"
 
-void	null_free(char **elem)
+void	stacklst_insert(t_stack *a, t_stack *b, t_stack *new)
 {
-	free(*elem);
-	*elem = NULL;
+	a->next = new;
+	b->prev = new;
+	new->prev = a;
+	new->next = b;
 }

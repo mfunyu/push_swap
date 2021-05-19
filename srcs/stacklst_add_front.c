@@ -6,11 +6,11 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/30 15:49:42 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/18 13:07:58 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/19 00:46:32 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "utils.h"
 
 void	stacklst_add_front(t_stack **lst, t_stack *new)
 {

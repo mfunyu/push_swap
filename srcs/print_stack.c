@@ -6,11 +6,11 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 10:16:24 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/18 14:46:12 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/19 00:46:43 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "utils.h"
 #include <stdio.h>
 
 int	print_stack(t_stack *lst_a, t_stack *lst_b, char *title)
