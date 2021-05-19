@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/30 18:32:49 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/17 02:32:01 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:28:02 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,21 @@ static int	newline_in_str(char **line, char **str, char **save, int *error)
 	if (index)
 	{
 		*line = ft_strljoin(*line, *str, index - 1);
-		if (!*line)
+		if (!(*line))
 			*error = 1;
 		if (!*error && index != (int)ft_strlen(*str))
 		{
 			new_save = ft_strldup(*str + index, ft_strlen(*str + index));
 			if (!new_save)
 				*error = 1;
-			return (null_free(save, 1));
+			null_free(save, 1);
+			*save = new_save;
+			return (1);
 		}
 		return (null_free(save, 1));
 	}
 	*line = ft_strljoin(*line, *str, ft_strlen(*str) + 1);
-	if (*line)
+	if (!(*line))
 		*error = 1;
 	return (null_free(save, 0));
 }
