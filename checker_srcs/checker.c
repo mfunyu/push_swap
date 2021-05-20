@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:25:56 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/19 16:39:10 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/20 14:36:39 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int ac, char **av)
 
 	if (!is_valid_arg(ac, av))
 		return (0);
-	if (init_stacks(&stack_a, &stack_b, av) == ERROR)
+	if (ch_init_stacks(&stack_a, &stack_b, av) == ERROR)
 		return (0);
 	print_stack(stack_a, NULL, "initial");
 	if (read_instructions(&stack_a, &instructions) == ERROR)

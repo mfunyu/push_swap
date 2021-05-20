@@ -22,7 +22,7 @@ void	print_instructions(t_list *operation);
 ** stack_list
 */
 void	stacklst_init(t_stack **head, int elem);
-
+int		ch_init_stacks(t_stack **stack_a, t_stack **stack_b, char **av);
 /*
 ** reader.c
 */
