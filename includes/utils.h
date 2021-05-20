@@ -29,6 +29,7 @@ typedef struct s_stack
 {
 	int				elem;
 	int				nil;
+	int				order;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }				t_stack;
@@ -44,9 +45,6 @@ bool	is_sorted(t_stack *stack_a, t_stack *stack_b);
 ** checkarg.c
 */
 bool	is_valid_arg(int ac, char **av);
-
-int		check_dup_add_back(t_stack **stack_a, t_stack *new);
-int		init_stacks(t_stack **stack_a, t_stack **stack_b, char **av);
 
 /*
 ** stack_list

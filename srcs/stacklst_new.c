@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 09:39:02 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/19 00:46:17 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/20 13:00:03 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_stack	*stacklst_nil(void)
 	new->elem = 0;
 	new->prev = new;
 	new->next = new;
+	new->order = -1;
 	new->nil = 1;
 	return (new);
 }
