@@ -58,8 +58,8 @@ int	match_order(t_stack *sorted_stack, int elem)
 int	init_stack_a(t_stack **stack_a, char **av, int ac)
 {
 	t_stack		*new;
-	t_stack		*sorted_stack;
 	t_stack		*prev;
+	t_stack		*sorted_stack;
 	int			i;
 
 	sorted_stack = find_order(av, ac);
@@ -86,19 +86,27 @@ int	init_stack_a(t_stack **stack_a, char **av, int ac)
 	return (SUCCESS);
 }
 
-int	ps_init_stacks(t_stack **stack_a, t_stack **stack_b, char **av, int ac)
+int	ps_init_info(t_info *info, char **av, int ac)
 {
+	t_stack		*stack_a;
+	t_stack		*stack_b;
 	t_stack		*nil;
+	t_list		*instructions;
 
-	*stack_b = stacklst_nil();
-	if (!(*stack_b))
+	stack_b = stacklst_nil();
+	if (!stack_b)
 		exit(EXIT_FAILURE);
-	*stack_a = NULL;
-	if (init_stack_a(stack_a, av, ac) == ERROR)
+	info->b_min = 0;
+	info->b_max = 0;
+	stack_a = NULL;
+	if (init_stack_a(&stack_a, av, ac) == ERROR)
 		return (ERROR);
 	nil = stacklst_nil();
-	stacklst_add_back(stack_a, nil);
-	stacklst_add_front(stack_a, nil);
-	print_stack(*stack_a, *stack_b, "init");
+	stacklst_add_back(&stack_a, nil);
+	stacklst_add_front(&stack_a, nil);
+	info->stack_a = &stack_a;
+	info->stack_b = &stack_b;
+	instructions = NULL;
+	info->instructions = &instructions;
 	return (SUCCESS);
 }

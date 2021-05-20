@@ -140,12 +140,12 @@ static t_operation_type	set_operation(t_list **instructions, t_operation_name ty
 }
 
 void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
-							t_list **instructions, t_operation_name op_name)
+							t_info *info, t_operation_name op_name)
 {
 	static t_operation_name	prev;
 	t_operation_type		op_type;
 
-	op_type = set_operation(instructions, op_name, prev);
+	op_type = set_operation(info->instructions, op_name, prev);
 	prev = op_name;
 	if (op_type == swap)
 		operation_swap_one(stacksrc);

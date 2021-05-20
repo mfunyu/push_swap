@@ -1,21 +1,30 @@
 #include "push_swap.h"
 
-void	sort_three(t_stack **stack_a, t_list **instructions, t_stack_type type)
+void	sort_three(t_stack **stack, t_info *info, t_stack_type type)
 {
 	t_stack	*first;
 	t_stack	*second;
+	int		min;
+	int		max;
 
-	first = *stack_a;
-	second = (*stack_a)->next;
-	if (first->order == 0 && second->order == 1)
+	min = info->b_min;
+	max = info->b_max;
+	if (type == A)
+	{
+		min = info->a_min;
+		max = info->a_max;
+	}
+	first = *stack;
+	second = (*stack)->next;
+	if (first->order == min && second->next->order == max)
 		return ;
-	else if (first->order == 1 && second->order == 2)
-		exec_add_instructions(stack_a, NULL, instructions, rra + type);
-	else if (first->order == 2 && second->order == 0)
-		exec_add_instructions(stack_a, NULL, instructions, ra + type);
+	else if (second->next->order == min && second->order == max)
+		exec_add_instructions(stack, NULL, info, rra + type);
+	else if (first->order == max && second->order == min)
+		exec_add_instructions(stack, NULL, info, ra + type);
 	else
 	{
-		exec_add_instructions(stack_a, NULL, instructions, sa + type);
-		sort_three(stack_a, instructions, type);
+		exec_add_instructions(stack, NULL, info, sa + type);
+		sort_three(stack, info, type);
 	}
 }

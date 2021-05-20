@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:58:34 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/19 17:22:39 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/20 22:21:40 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,17 @@
 
 int	main(int ac, char **av)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	t_list	*instructions;
+	t_info	*info;
 
 	if (!is_valid_arg(ac, av))
 		return (0);
-	if (init_stacks(&stack_a, &stack_b, av) == ERROR)
+	info = malloc(sizeof(t_info));
+	if (ps_init_info(info, av, ac) == ERROR)
 		return (0);
-	// print_stack(stack_a, stack_b, "start");
-	sort_stack(&stack_a, &stack_b, &instructions);
-	// print_stack(stack_a, stack_b, "end");
-	print_instructions(instructions);
-	ft_lstclear(&instructions, free);
-	stacklst_clear(&stack_a);
-	stacklst_clear(&stack_b);
+	print_stack2(info, "start");
+	sort_stack(info, A);
+	// print_stack2(&info, "end");
+	// print_instructions(&info);
+	// clear_info(&info);
 	return (0);
 }
