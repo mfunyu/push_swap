@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:20:53 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/21 23:25:11 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/22 01:49:24 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_info
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	t_list		*instructions;
+	int			sorted_id;
 	int			a_len;
 	int			a_max;
 	int			a_min;

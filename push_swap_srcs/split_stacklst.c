@@ -37,7 +37,7 @@ void	split_stacklst_mv_smaller(t_info **info, int pivot_a)
 	if (!is_ordered(*src))
 	{
 		working = *src;
-		while (working->sorted)
+		while ((*info)->sorted_id != -1 && (*src)->prev->prev->order != (*info)->sorted_id)
 		{
 			exec_add_instructions(src, dst, info, ra);
 			working = *src;
@@ -57,7 +57,6 @@ void	split_stacklst_mv_larger(t_info **info, int pivot_b)
 	dst = &(*info)->stack_a;
 	degree = 0;
 	working = *src;
-	printf("piv: [%d]\n", pivot_b);
 	while (!working->nil)
 	{
 		if (working->order > pivot_b)
@@ -77,6 +76,6 @@ void	split_stacklst_mv_larger(t_info **info, int pivot_b)
 		}
 	}
 	(*info)->b_max = pivot_b;
-	(*info)->a_min = (*info)->b_min + 1;
+	(*info)->a_min = (*info)->b_max + 1;
 	ps_print_stack(*info, "pa", 0);
 }

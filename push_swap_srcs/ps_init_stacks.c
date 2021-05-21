@@ -102,6 +102,7 @@ int	ps_init_info(t_info **info, char **av, int ac, int option)
 	(*info)->a_min = 0;
 	(*info)->a_max = ac - 2 - option;
 	(*info)->a_len = ac - 2 - option;
+	(*info)->sorted_id = -1;
 	stack_a = NULL;
 	if (init_stack_a(&stack_a, av, ac, option) == ERROR)
 		return (ERROR);
