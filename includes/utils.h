@@ -34,11 +34,6 @@ typedef struct s_stack
 	struct s_stack	*next;
 }				t_stack;
 
-/*
-** dbg
-*/
-int		print_stack(t_stack *lst_a, t_stack *lst_b, char *title);
-
 bool	is_sorted(t_stack *stack_a, t_stack *stack_b);
 
 /*
@@ -54,7 +49,6 @@ t_stack	*stacklst_new(int elem);
 void	stacklst_add_back(t_stack **lst, t_stack *new);
 void	stacklst_add_front(t_stack **lst, t_stack *new);
 void	stacklst_clear(t_stack **lst);
-void	stacklst_init(t_stack **head, int elem);
 t_stack	*stacklst_nil(void);
 void	stacklst_insert(t_stack *a, t_stack *b, t_stack *new);
 t_stack	*stacklst_pop(t_stack **lst, bool head);

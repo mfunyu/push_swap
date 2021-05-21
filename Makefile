@@ -15,7 +15,7 @@ PS_OBJS				:= $(PS_SRCS_FILES:.c=.o)
 # PS_OBJS				+= $(SRCS:.c=.o)
 PS_OBJS				+= $(SRCS_FILES:.c=.o)
 
-CHECKER				:= checker2
+CHECKER				:= checker
 CHECKER_SRCS_DIR	:= checker_srcs
 CHECKER_SRCS_FILES	:= $(wildcard ./checker_srcs/*.c)
 # CHECKER_SRCS		:= $(addprefix $(CHECKER_SRCS_DIR)/, $(CHECKER_SRCS_FILES))

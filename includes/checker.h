@@ -13,16 +13,14 @@
 #ifndef CHECKER_H
 # define CHECKER_H
 
-// delete later
 # include "utils.h"
-
-void	print_instructions(t_list *operation);
 
 /*
 ** stack_list
 */
 void	stacklst_init(t_stack **head, int elem);
 int		ch_init_stacks(t_stack **stack_a, t_stack **stack_b, char **av);
+
 /*
 ** reader.c
 */
@@ -35,14 +33,8 @@ int		execute_instructions(t_stack **stack_a, t_stack **stack_b,
 			t_list *instructions);
 
 /*
-** operations
+** print
 */
-void	operation_swap_one(t_stack **stack);
-void	operation_swap_both(t_stack **stack_a, t_stack **stack_b);
-void	operation_push_one(t_stack **src, t_stack **dest);
-void	operation_rotate_one(t_stack **stack);
-void	operation_rotate_both(t_stack **stack_a, t_stack **stack_b);
-void	operation_revrotate_one(t_stack **stack);
-void	operation_revrotate_both(t_stack **stack_a, t_stack **stack_b);
+int		ch_print_stack(t_stack *stack_a, t_stack *stack_b, char *title);
 
 #endif

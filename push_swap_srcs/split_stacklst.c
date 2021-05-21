@@ -1,7 +1,7 @@
 #include "push_swap.h"
 
 void	split_stacklst(t_stack **src, t_stack **dst,
-							t_info *info, t_stack_info *st_info)
+							t_info **info, t_stack_info *st_info)
 {
 	t_stack		*working;
 	int			degree;
@@ -27,10 +27,10 @@ void	split_stacklst(t_stack **src, t_stack **dst,
 			degree++;
 		}
 	}
-	print_stack(*src, *dst, "ra");
+	ps_print_stack(*info, "ra");
 }
 
-void	split_stacklst_b(t_stack **src, t_stack **dst, t_info *info,
+void	split_stacklst_b(t_stack **src, t_stack **dst, t_info **info,
 														t_stack_info *st_info)
 {
 	t_stack		*working;
@@ -58,5 +58,5 @@ void	split_stacklst_b(t_stack **src, t_stack **dst, t_info *info,
 			degree++;
 		}
 	}
-	print_stack(*dst, *src, "split B");
+	ps_print_stack(*info, "split B");
 }

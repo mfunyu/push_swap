@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:58:34 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/21 15:04:34 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/21 16:21:37 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	main(int ac, char **av)
 		return (0);
 	if (ps_init_info(&info, av, ac) == ERROR)
 		return (0);
-	// print_stack(info->stack_a, info->stack_b, "start");
+	// ps_print_stack(info, "start");
 	sort_stack(&info, A);
-	// print_stack2(info, "end");
+	// ps_print_stack(info, "end");
 	print_instructions(info);
 	// clear_info(&info);
 	return (0);

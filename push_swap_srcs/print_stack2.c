@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_stack2.c                                     :+:      :+:    :+:   */
+/*   ps_print_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-int	print_stack2(t_info *info, char *title)
+int	ps_print_stack(t_info *info, char *title)
 {
 	t_stack		*lst_a;
 	t_stack		*lst_b;
