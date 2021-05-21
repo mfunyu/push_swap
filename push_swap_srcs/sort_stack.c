@@ -1,19 +1,21 @@
 #include "push_swap.h"
 
-void		sort_stack(t_info *info, t_stack_type type)
+void		sort_stack(t_info **info, t_stack_type type)
 {
-	// int			len;
+	int			len;
 
 	(void)type;
-	print_stack(*(info->stack_a), NULL, "in");
-	// len = count_stacklst(*(info->stack_a));
-	// printf("%d\n", len);
-	// if (len == 1)
-	// 	return ;
-	// else if (len == 2)
-	// 	sort_two(info->stack_a, info, type);
-	// else if (len == 3)
-		// sort_three(info->stack_a, info, type);
+	(void)info;
+	// printf("%d\n", (*info)->stack_a->elem);
+	// print_stack(*(*info)->stack_a, NULL, "in");
+	// print_stack2(*info, "in");
+	len = count_stacklst((*info)->stack_a);
+	if (len == 1)
+		return ;
+	else if (len == 2)
+		sort_two(&(*info)->stack_a, info, type);
+	else if (len == 3)
+		sort_three(&(*info)->stack_a, info, type);
 	// else if (len <= 5)
 	// 	sort_five(info, len);
 	// else

@@ -86,27 +86,30 @@ int	init_stack_a(t_stack **stack_a, char **av, int ac)
 	return (SUCCESS);
 }
 
-int	ps_init_info(t_info *info, char **av, int ac)
+int	ps_init_info(t_info **info, char **av, int ac)
 {
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	t_stack		*nil;
 	t_list		*instructions;
 
+	*info = malloc(sizeof(t_info));
 	stack_b = stacklst_nil();
 	if (!stack_b)
 		exit(EXIT_FAILURE);
-	info->b_min = 0;
-	info->b_max = 0;
+	(*info)->b_min = 0;
+	(*info)->b_max = 0;
+	(*info)->a_min = 0;
+	(*info)->a_max = ac - 2;
 	stack_a = NULL;
 	if (init_stack_a(&stack_a, av, ac) == ERROR)
 		return (ERROR);
 	nil = stacklst_nil();
 	stacklst_add_back(&stack_a, nil);
 	stacklst_add_front(&stack_a, nil);
-	info->stack_a = &stack_a;
-	info->stack_b = &stack_b;
+	(*info)->stack_a = stack_a;
+	(*info)->stack_b = stack_b;
 	instructions = NULL;
-	info->instructions = &instructions;
+	(*info)->instructions = instructions;
 	return (SUCCESS);
 }

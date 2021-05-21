@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	sort_two(t_stack **stack, t_info *info, t_stack_type type)
+void	sort_two(t_stack **stack, t_info **info, t_stack_type type)
 {
 	t_stack				*first;
 	t_operation_name	operation;

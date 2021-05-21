@@ -1,18 +1,18 @@
 #include "push_swap.h"
 
-void	sort_three(t_stack **stack, t_info *info, t_stack_type type)
+void	sort_three(t_stack **stack, t_info **info, t_stack_type type)
 {
 	t_stack	*first;
 	t_stack	*second;
 	int		min;
 	int		max;
 
-	min = info->b_min;
-	max = info->b_max;
+	min = (*info)->b_min;
+	max = (*info)->b_max;
 	if (type == A)
 	{
-		min = info->a_min;
-		max = info->a_max;
+		min = (*info)->a_min;
+		max = (*info)->a_max;
 	}
 	first = *stack;
 	second = (*stack)->next;

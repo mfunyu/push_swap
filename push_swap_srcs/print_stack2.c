@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 10:16:24 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/20 17:36:18 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/21 00:37:44 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	print_stack2(t_info *info, char *title)
 	int			i;
 
 	i = 0;
-	lst_a = *info->stack_a;
-	lst_b = *info->stack_b;
+	lst_a = info->stack_a;
+	lst_b = info->stack_b;
 	printf("\e[36m--------- %-7s ---------\e[00m\n", title);
 	while (!lst_a->nil || (lst_b && !lst_b->nil))
 	{
