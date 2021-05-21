@@ -2,7 +2,16 @@
 
 void	clear_info(t_info **info)
 {
-	ft_lstclear(&((*info)->instructions), free);
+	t_instruc	*now;
+	t_instruc	*tmp;
+
+	now = (*info)->instructions;
+	while (now)
+	{
+		tmp = now;
+		now = now->next;
+		free(tmp);
+	}
 	stacklst_clear(&(*info)->stack_a);
 	stacklst_clear(&(*info)->stack_b);
 	free(*info);

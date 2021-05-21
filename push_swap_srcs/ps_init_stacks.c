@@ -91,7 +91,7 @@ int	ps_init_info(t_info **info, char **av, int ac, int option)
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	t_stack		*nil;
-	t_list		*instructions;
+	t_instruc	*instructions;
 
 	*info = malloc(sizeof(t_info));
 	stack_b = stacklst_nil();
