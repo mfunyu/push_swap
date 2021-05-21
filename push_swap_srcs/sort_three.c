@@ -10,6 +10,7 @@ void	sort_three(t_stack **stack, t_info **info, t_stack_type type)
 	int		min;
 	int		max;
 
+	// printf("in %d %d\n",(*info)->b_min, (*info)->b_max);
 	min = (*info)->b_min;
 	max = (*info)->b_max;
 	if (type == A)

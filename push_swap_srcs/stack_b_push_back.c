@@ -1,18 +1,20 @@
 #include "push_swap.h"
 
-bool	stack_b_push_back(t_stack **stack_b, t_stack **stack_a,
-									t_info **info, t_stack_info *st_info)
+bool	stack_b_push_back(t_info **info, int pivot_a)
 {
 	bool	pivot_done;
 
 	pivot_done = false;
-	while (!(*stack_b)->nil)
+	ps_print_stack(*info, "push", 0);
+	while (!(*info)->stack_b->nil)
 	{
-		if ((*stack_b)->elem == st_info->pivot)
+		if ((*info)->stack_b->order == pivot_a - 1)
 			pivot_done = true;
+		(*info)->stack_b->sorted = 1;
 		ps_print_stack(*info, "pushback", -1);
-		exec_add_instructions(stack_b, stack_a, info, pa);
-		exec_add_instructions(stack_a, NULL, info, ra);
+		exec_add_instructions(&(*info)->stack_b, &(*info)->stack_a, info, pa);
+		exec_add_instructions(&(*info)->stack_a, NULL, info, ra);
 	}
+	// add largest sorted in t_info
 	return (pivot_done);
 }

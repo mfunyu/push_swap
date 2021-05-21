@@ -1,24 +1,27 @@
 #include "push_swap.h"
 
-void	split_stacklst(t_stack **src, t_stack **dst,
-							t_info **info, t_stack_info *st_info)
+void	split_stacklst_mv_smaller(t_info **info, int pivot_a)
 {
 	t_stack		*working;
+	t_stack		**src;
+	t_stack		**dst;
 	int			degree;
 
+	src = &(*info)->stack_a;
+	dst = &(*info)->stack_b;
 	degree = 0;
 	working = *src;
-	printf("piv: %d\n", st_info->pivot);
-	while (!working->nil)
+	// printf("piv: [%d]\n", pivot_a);
+	while (!working->nil && !working->sorted)
 	{
-		if (working->elem < st_info->pivot)
+		if (working->order <= pivot_a && !working->sorted)
 		{
 			while (degree)
 			{
 				degree--;
-				exec_add_instructions(src, dst, info, ra + st_info->type);
+				exec_add_instructions(src, dst, info, ra);
 			}
-			exec_add_instructions(src, dst, info, pa + st_info->type);
+			exec_add_instructions(src, dst, info, pb);
 			working = *src;
 		}
 		else
@@ -27,29 +30,44 @@ void	split_stacklst(t_stack **src, t_stack **dst,
 			degree++;
 		}
 	}
-	ps_print_stack(*info, "ra", 0);
+	ps_print_stack(*info, "pb", 0);
+	(*info)->b_min = (*info)->a_min;
+	(*info)->a_min = pivot_a + 1;
+	(*info)->b_max = pivot_a;
+	if (!is_ordered(*src))
+	{
+		working = *src;
+		while (working->sorted)
+		{
+			exec_add_instructions(src, dst, info, ra);
+			working = *src;
+		}
+	}
+	ps_print_stack(*info, "pb", 0);
 }
 
-void	split_stacklst_b(t_stack **src, t_stack **dst, t_info **info,
-														t_stack_info *st_info)
+void	split_stacklst_mv_larger(t_info **info, int pivot_b)
 {
 	t_stack		*working;
+	t_stack		**src;
+	t_stack		**dst;
 	int			degree;
 
+	src = &(*info)->stack_b;
+	dst = &(*info)->stack_a;
 	degree = 0;
 	working = *src;
-	printf("piv: %d\n", st_info->pivot);
+	printf("piv: [%d]\n", pivot_b);
 	while (!working->nil)
 	{
-		if (working->elem > st_info->pivot)
+		if (working->order > pivot_b)
 		{
 			while (degree)
 			{
 				degree--;
-				exec_add_instructions(src, dst, info, ra + st_info->type);
-				// print_stack(*dst, *src, "ra");
+				exec_add_instructions(src, dst, info, rb);
 			}
-			exec_add_instructions(src, dst, info, pa + st_info->type);
+			exec_add_instructions(src, dst, info, pa);
 			working = *src;
 		}
 		else
@@ -58,5 +76,7 @@ void	split_stacklst_b(t_stack **src, t_stack **dst, t_info **info,
 			degree++;
 		}
 	}
-	ps_print_stack(*info, "split B", 0);
+	(*info)->b_max = pivot_b;
+	(*info)->a_min = (*info)->b_min + 1;
+	ps_print_stack(*info, "pa", 0);
 }

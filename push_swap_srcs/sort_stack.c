@@ -3,21 +3,26 @@
 void	sort_stack(t_info **info, t_stack_type type)
 {
 	int			len;
+	t_stack		**src;
 
-	len = count_stacklst((*info)->stack_a);
+	if (type == A)
+		src = &(*info)->stack_a;
+	else
+		src = &(*info)->stack_b;
+	len = count_stacklst(*src);
 	if (len == 1)
 		return ;
 	else if (len == 2)
-		sort_two(&(*info)->stack_a, info, type);
+		sort_two(src, info, type);
 	else if (len == 3)
-		sort_three(&(*info)->stack_a, info, type);
+		sort_three(src, info, type);
 	else if (len <= 5)
 		sort_five(info, len);
-	// else
-	// {
-	// 	// while (!is_sorted(*stack_a, *stack_b))
-	// 	sort_all(info, len);
-	// }
+	else
+	{
+		while (!is_ordered((*info)->stack_a))
+			sort_all(info);
+	}
 }
 
 /*

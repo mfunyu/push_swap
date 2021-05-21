@@ -1,56 +1,53 @@
-// #include "push_swap.h"
+#include "push_swap.h"
 
-// int	find_pivot(t_stack *stack, int len)
-// {
-// 	int		middle;
+int	find_pivot(t_info **info, t_stack_type type)
+{
+	int		pivot;
 
-// 	middle = len / 2;
-// 	while (middle-- && !stack->next->nil)
-// 		stack = stack->next;
-// 	return (stack->elem);
-// }
+	if (type == A)
+		pivot = ((*info)->a_max - (*info)->a_min) / 2 + (*info)->a_min;
+	else
+		pivot = ((*info)->b_max - (*info)->b_min) / 2 + (*info)->b_min;
+	return (pivot);
+}
 
-// void	sort_stack_b(t_stack **stack_b, t_stack **stack_a, t_list **instructions,
-// 											t_stack_info *info)
-// {
-// 	int		len_b;
+void	sort_stack_b(t_info **info)
+{
+	int		pivot_b;
 
-// 	len_b = count_stacklst(*stack_b);
-// 	if (len_b <= 3)
-// 	{
-// 		sort_stack(stack_b, NULL, instructions, B);
-// 	}
-// 	else
-// 	{
-// 		info->pivot = find_pivot(*stack_b, len_b);
-// 		info->type = B;
-// 		split_stacklst_b(stack_b, stack_a, instructions, info);
-// 		sort_stack_b(stack_b, stack_a, instructions, info);
-// 	}
-// }
+	if (((*info)->b_max - (*info)->b_min) <= 3)
+	{
+		ps_print_stack(*info, "b will be sorted", 0);
+		sort_stack(info, B);
+		ps_print_stack(*info, "b sorted", 0);
+	}
+	else
+	{
+		pivot_b = find_pivot(info, B);
+		split_stacklst_mv_larger(info, pivot_b);
+		sort_stack_b(info);
+	}
+}
 
-// void	sort_all(t_info *info, int len_a)
-// {
-// 	t_stack_info	*st_info;
-// 	// t_stack			*working;
+/*
+** sort stack_a and push some to stack_b
+*/
+void	sort_all(t_info **info)
+{
+	int		pivot_a;
 
-// 	st_info = malloc(sizeof(t_stack_info));
-// 	st_info->pivot = find_pivot(*info->stack_a, len_a);
-// 	st_info->type = A;
-// 	split_stacklst(info->stack_a, info->stack_b, info, st_info);
-// 	sort_stack_b(info, st_info);
-// 	stack_b_push_back(info, st_info);
-// 	// working = *stack_b;
-// 	// while (!working->nil)
-// 	// {
-// 	// 	exec_add_instructions(stack_b, stack_a, instructions, pa);
-// 	// 	exec_add_instructions(stack_b, stack_a, instructions, ra);
-// 	// 	working = working->next;
-// 	// }
-// 	// print_stack(*stack_a, *stack_b, "split a2");
-// 	// free(info);
-// }
-
-
-// ///ToDO quicksort 実装
-
+	pivot_a = find_pivot(info, A);
+	split_stacklst_mv_smaller(info, pivot_a);
+	sort_stack_b(info);
+	stack_b_push_back(info, pivot_a);
+	ps_print_stack(*info, "round end", 0);
+	// working = *stack_b;
+	// while (!working->nil)
+	// {
+	// 	exec_add_instructions(stack_b, stack_a, instructions, pa);
+	// 	exec_add_instructions(stack_b, stack_a, instructions, ra);
+	// 	working = working->next;
+	// }
+	// print_stack(*stack_a, *stack_b, "split a2");
+	// free(info);
+}

@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:20:53 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/21 18:21:11 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/21 23:25:11 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_info
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	t_list		*instructions;
+	int			a_len;
 	int			a_max;
 	int			a_min;
 	int			b_max;
@@ -77,21 +78,18 @@ void	sort_stack(t_info **info, t_stack_type type);
 void	sort_two(t_stack **stack, t_info **info, t_stack_type type);
 void	sort_three(t_stack **stack, t_info **info, t_stack_type type);
 void	sort_five(t_info **info, int len);
-void	sort_all(t_stack **stack_a, t_stack **stack_b,
-			t_list **instructions, int len_a);
+void	sort_all(t_info **info);
+void	split_stacklst_mv_smaller(t_info **info, int pivot_a);
+void	split_stacklst_mv_larger(t_info **info, int pivot_b);
+bool	stack_b_push_back(t_info **info, int pivot_a);
+bool	is_ordered(t_stack *stack_a);
 
 /*
 ** stack managements
 */
 int		count_stacklst(t_stack *lst);
-void	split_stacklst(t_stack **src, t_stack **dst,
-			t_info **info, t_stack_info *st_info);
-void	split_stacklst_b(t_stack **src, t_stack **dst, t_info **info,
-			t_stack_info *st_info);
 void	record_swap(t_stack **stack, t_list **instructions,
 			t_stack_type type);
-bool	stack_b_push_back(t_stack **stack_b, t_stack **stack_a,
-			t_info **info, t_stack_info *st_info);
 
 /*
 ** prints
@@ -101,6 +99,6 @@ void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
 void	print_instructions(t_info *info);
 void	ps_print_stack(t_info *info, char *title, int option);
 
-void	clear_info(t_info *info);
+void	clear_info(t_info **info);
 
 #endif

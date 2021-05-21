@@ -30,16 +30,17 @@ typedef struct s_stack
 	int				elem;
 	int				nil;
 	int				order;
+	int				sorted;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }				t_stack;
-
-bool	is_sorted(t_stack *stack_a, t_stack *stack_b);
 
 /*
 ** checkarg.c
 */
 bool	is_valid_arg(int ac, char **av, int *option);
+
+bool	is_sorted(t_stack *stack_a, t_stack *stack_b);
 
 /*
 ** stack_list
