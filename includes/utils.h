@@ -39,7 +39,7 @@ bool	is_sorted(t_stack *stack_a, t_stack *stack_b);
 /*
 ** checkarg.c
 */
-bool	is_valid_arg(int ac, char **av);
+bool	is_valid_arg(int ac, char **av, int *option);
 
 /*
 ** stack_list

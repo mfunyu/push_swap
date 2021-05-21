@@ -19,7 +19,8 @@
 ** stack_list
 */
 void	stacklst_init(t_stack **head, int elem);
-int		ch_init_stacks(t_stack **stack_a, t_stack **stack_b, char **av);
+int		ch_init_stacks(t_stack **stack_a, t_stack **stack_b,
+			char **av, int option);
 
 /*
 ** reader.c
@@ -30,11 +31,11 @@ int		read_instructions(t_stack **stack_a, t_list **instructions);
 ** executer.c
 */
 int		execute_instructions(t_stack **stack_a, t_stack **stack_b,
-			t_list *instructions);
+			t_list *instructions, int option);
 
 /*
 ** print
 */
-int		ch_print_stack(t_stack *stack_a, t_stack *stack_b, char *title);
+void	ch_print_stack(t_stack *lst_a, t_stack *lst_b, char *title, int option);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:20:53 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/21 16:34:40 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/21 18:21:11 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_info
 /*
 ** inits
 */
-int		ps_init_info(t_info **info, char **av, int ac);
+int		ps_init_info(t_info **info, char **av, int ac, int option);
 int		init_stacks(t_stack **stack_a, t_stack **stack_b, char **av, int ac);
 void	stacklst_init(t_stack **head, int elem);
 
@@ -99,7 +99,7 @@ bool	stack_b_push_back(t_stack **stack_b, t_stack **stack_a,
 void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
 			t_info **info, t_operation_name op_name);
 void	print_instructions(t_info *info);
-int		ps_print_stack(t_info *info, char *title);
+void	ps_print_stack(t_info *info, char *title, int option);
 
 void	clear_info(t_info *info);
 
