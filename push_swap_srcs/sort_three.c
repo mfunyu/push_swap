@@ -1,5 +1,8 @@
 #include "push_swap.h"
 
+/*
+** can be used by both stack_a and stack_b
+*/
 void	sort_three(t_stack **stack, t_info **info, t_stack_type type)
 {
 	t_stack	*first;

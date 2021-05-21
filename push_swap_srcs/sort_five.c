@@ -15,6 +15,9 @@ int	get_index_smallest_a(t_stack *stack_a, t_info **info)
 	return (-1);
 }
 
+/*
+** only work with stack_a
+*/
 void	sort_five(t_info **info, int len)
 {
 	int					s_index;
