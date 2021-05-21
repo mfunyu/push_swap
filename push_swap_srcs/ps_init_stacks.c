@@ -21,16 +21,16 @@ int	check_dup(t_stack *sorted_stack)
 	return (SUCCESS);
 }
 
-t_stack	*find_order(char **av, int ac)
+t_stack	*find_order(char **av, int ac, int option)
 {
 	t_stack		*sorted_stack;
 	int			i;
 
 	sorted_stack = malloc(sizeof(t_stack) * (ac + 1));
 	i = 0;
-	while (i < ac - 1)
+	while (i < ac - 1 - option)
 	{
-		sorted_stack[i].elem = ft_atoi(av[i + 1]);
+		sorted_stack[i].elem = ft_atoi(av[i + option + 1]);
 		sorted_stack[i].nil = 0;
 		sorted_stack[i].next = NULL;
 		sorted_stack[i].prev = NULL;
@@ -55,17 +55,17 @@ int	match_order(t_stack *sorted_stack, int elem)
 	return (-1);
 }
 
-int	init_stack_a(t_stack **stack_a, char **av, int ac)
+int	init_stack_a(t_stack **stack_a, char **av, int ac, int option)
 {
 	t_stack		*new;
 	t_stack		*prev;
 	t_stack		*sorted_stack;
 	int			i;
 
-	sorted_stack = find_order(av, ac);
+	sorted_stack = find_order(av, ac, option);
 	if (check_dup(sorted_stack) == ERROR)
 		return (ERROR);
-	i = 1;
+	i = option + 1;
 	prev = NULL;
 	while (i < ac)
 	{
@@ -86,7 +86,7 @@ int	init_stack_a(t_stack **stack_a, char **av, int ac)
 	return (SUCCESS);
 }
 
-int	ps_init_info(t_info **info, char **av, int ac)
+int	ps_init_info(t_info **info, char **av, int ac, int option)
 {
 	t_stack		*stack_a;
 	t_stack		*stack_b;
@@ -100,9 +100,9 @@ int	ps_init_info(t_info **info, char **av, int ac)
 	(*info)->b_min = 0;
 	(*info)->b_max = 0;
 	(*info)->a_min = 0;
-	(*info)->a_max = ac - 2;
+	(*info)->a_max = ac - 2 - option;
 	stack_a = NULL;
-	if (init_stack_a(&stack_a, av, ac) == ERROR)
+	if (init_stack_a(&stack_a, av, ac, option) == ERROR)
 		return (ERROR);
 	nil = stacklst_nil();
 	stacklst_add_back(&stack_a, nil);

@@ -27,7 +27,7 @@ void	split_stacklst(t_stack **src, t_stack **dst,
 			degree++;
 		}
 	}
-	ps_print_stack(*info, "ra");
+	ps_print_stack(*info, "ra", 0);
 }
 
 void	split_stacklst_b(t_stack **src, t_stack **dst, t_info **info,
@@ -58,5 +58,5 @@ void	split_stacklst_b(t_stack **src, t_stack **dst, t_info **info,
 			degree++;
 		}
 	}
-	ps_print_stack(*info, "split B");
+	ps_print_stack(*info, "split B", 0);
 }

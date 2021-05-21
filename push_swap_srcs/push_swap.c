@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:58:34 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/21 16:21:37 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/21 18:30:19 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@
 int	main(int ac, char **av)
 {
 	t_info	*info;
+	int		option;
 
-	if (!is_valid_arg(ac, av))
+	option = 0;
+	if (!is_valid_arg(ac, av, &option))
 		return (0);
-	if (ps_init_info(&info, av, ac) == ERROR)
+	if (ps_init_info(&info, av, ac, option) == ERROR)
 		return (0);
-	// ps_print_stack(info, "start");
+	ps_print_stack(info, "start", option);
 	sort_stack(&info, A);
-	// ps_print_stack(info, "end");
+	ps_print_stack(info, "end", 0);
 	print_instructions(info);
 	// clear_info(&info);
 	return (0);
