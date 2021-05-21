@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 10:16:24 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/21 20:34:29 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/22 00:07:36 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,41 +28,31 @@ static void	print_title(char *str)
 	ft_putstr_fd("---------\e[00m\n", 1);
 }
 
-static void	print_format_a(int i, char *order, char *elem)
+static void	print_format(char *order, char *elem, int b)
 {
 	int		len;
 
-	ft_putnbr_fd(i, 1);
-	ft_putstr_fd(": [", 1);
-	if (order)
-	{
-		ft_putstr_fd(" (", 1);
-		ft_putstr_fd(order, 1);
-		ft_putstr_fd(") ", 1);
-	}
-	else
-	{
-		len = 20 - ft_strlen(elem);
-		while (len--)
-			ft_putchar_fd(' ', 1);
-	}
-	ft_putstr_fd(elem, 1);
-	ft_putstr_fd("]", 1);
-}
-
-static void	print_format_b(int order, int elem)
-{
-	int		len;
-
-	ft_putstr_fd("[", 1);
-	ft_putstr_fd(" (", 1);
-	ft_putnbr_fd(order, 1);
+	ft_putstr_fd(" [ (", 1);
+	ft_putstr_fd(order, 1);
 	ft_putstr_fd(") ", 1);
-	len = 10 - ft_strlen(ft_itoa(elem));
+	len = 22 - ft_strlen(elem) - ft_strlen(order);
 	while (len--)
 		ft_putchar_fd(' ', 1);
-	ft_putnbr_fd(elem, 1);
-	ft_putendl_fd("]", 1);
+	ft_putstr_fd(elem, 1);
+	if (b)
+		ft_putendl_fd("]", 1);
+	else
+		ft_putstr_fd("]", 1);
+}
+
+static void	print_format_a(int i, char *order, char *elem)
+{
+	ft_putnbr_fd(i, 1);
+	ft_putstr_fd(":", 1);
+	if (order)
+		print_format(order, elem, 0);
+	else
+		ft_putstr_fd("                             ", 1);
 }
 
 void	ps_print_stack(t_info *info, char *title, int option)
@@ -88,10 +78,10 @@ void	ps_print_stack(t_info *info, char *title, int option)
 			lst_a = lst_a->next;
 		}
 		else
-			print_format_a(i, NULL, " ");
+			print_format_a(i, NULL, NULL);
 		if (lst_b && !lst_b->nil)
 		{
-			print_format_b(lst_b->order, lst_b->elem);
+			print_format(ft_itoa(lst_b->order), ft_itoa(lst_b->elem), 1);
 			lst_b = lst_b->next;
 		}
 		else
