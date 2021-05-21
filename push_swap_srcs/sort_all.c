@@ -8,9 +8,10 @@ int	find_pivot(t_info **info, t_stack_type type)
 		pivot = ((*info)->a_max - (*info)->a_min) / 2 + (*info)->a_min;
 	else
 	{
-		pivot = (*info)->b_min + 2;
-		if (pivot > (*info)->b_max)
-			pivot = (*info)->b_max;
+		pivot = ((*info)->b_max - (*info)->b_min) / 2 + (*info)->b_min;
+		// pivot = (*info)->b_min + 2;
+		// if (pivot > (*info)->b_max)
+		// 	pivot = (*info)->b_max;
 	}
 	return (pivot);
 }
@@ -19,6 +20,8 @@ void	sort_stack_b(t_info **info)
 {
 	int		pivot_b;
 
+	if ((*info)->stack_b->nil)
+		return ;
 	if (((*info)->b_max - (*info)->b_min) + 1 <= 3)
 	{
 		ps_print_stack(*info, "b will be sorted", 0);

@@ -21,7 +21,15 @@ void	split_stacklst_mv_smaller(t_info **info, int pivot_a)
 				degree--;
 				exec_add_instructions(src, dst, info, ra);
 			}
-			exec_add_instructions(src, dst, info, pb);
+			if (working->order == (*info)->sorted_id + 1 && (*src)->prev->prev->order == (*info)->sorted_id)
+			{
+				exec_add_instructions(src, dst, info, ra);
+				working->sorted = 1;
+				(*info)->sorted_id++;
+				(*info)->a_min++;
+			}
+			else
+				exec_add_instructions(src, dst, info, pb);
 			working = *src;
 		}
 		else
