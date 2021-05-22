@@ -19,10 +19,7 @@ void	sort_stack(t_info **info, t_stack_type type)
 	else if (len <= 5)
 		sort_five(info, len);
 	else
-	{
-		while (!is_ordered((*info)->stack_a))
-			sort_all(info);
-	}
+		sort_all(info);
 }
 
 /*

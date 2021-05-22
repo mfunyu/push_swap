@@ -16,12 +16,12 @@ int	find_pivot(t_info **info, t_stack_type type)
 	return (pivot);
 }
 
-void	sort_stack_b(t_info **info)
+int	sort_stack_b(t_info **info)
 {
 	int		pivot_b;
 
 	if ((*info)->stack_b->nil)
-		return ;
+		return (-1);
 	if (((*info)->b_max - (*info)->b_min) + 1 <= 3)
 	{
 		ps_print_stack(*info, "b will be sorted", 0);
@@ -34,6 +34,7 @@ void	sort_stack_b(t_info **info)
 		split_stacklst_mv_larger(info, pivot_b);
 		sort_stack_b(info);
 	}
+	return (pivot_b);
 }
 
 /*
@@ -42,12 +43,20 @@ void	sort_stack_b(t_info **info)
 void	sort_all(t_info **info)
 {
 	int		pivot_a;
+	int		pivot_b;
 
 	pivot_a = find_pivot(info, A);
 	split_stacklst_mv_smaller(info, pivot_a);
-	sort_stack_b(info);
-	stack_b_push_back(info, pivot_a);
-	ps_print_stack(*info, "round end", 0);
+	while (!is_sorted((*info)->stack_a, (*info)->stack_b))
+	{
+		pivot_b = sort_stack_b(info);
+		if (pivot_b < 0)
+			pivot_b = (*info)->a_max;
+		stack_b_push_back(info, pivot_a);
+		ps_print_stack(*info, "round end", 0);
+		if (!is_sorted((*info)->stack_a, (*info)->stack_b))
+			split_stacklst_mv_smaller(info, pivot_b);
+	}
 	// working = *stack_b;
 	// while (!working->nil)
 	// {
