@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static void	add_operation(t_instruc **instructions, t_operation_name name)
+void	add_operation(t_instruc **instructions, t_operation_name name)
 {
 	t_instruc	*last;
 	t_instruc	*new;
@@ -21,15 +21,29 @@ static void	add_operation(t_instruc **instructions, t_operation_name name)
 	}
 }
 
-static void	rmv_operation(t_instruc **instructions)
+int	rmv_operation(t_instruc **instructions)
 {
 	t_instruc	*last;
+	int			value;
 
+	if (!instructions || !*instructions)
+		return (-1);
 	last = *instructions;
-	while (last->next->next)
-		last = last->next;
-	free(last->next);
-	last->next = NULL;
+	if (last->next)
+	{
+		while (last->next->next)
+			last = last->next;
+		value = last->next->operation;
+		free(last->next);
+		last->next = NULL;
+	}
+	else
+	{
+		value = last->operation;
+		free(last);
+		*instructions = NULL;
+	}
+	return (value);
 }
 
 static t_operation_type	set_operation2(t_instruc **instructions, t_operation_name type,

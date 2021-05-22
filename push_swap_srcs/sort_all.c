@@ -10,6 +10,7 @@ int	find_pivot(t_info **info, t_stack_type type)
 	{
 		pivot = ((*info)->b_max - (*info)->b_min) / 2 + (*info)->b_min;
 	}
+	add_operation(&(*info)->pivot, pivot);
 	return (pivot);
 }
 
@@ -41,18 +42,23 @@ int	sort_stack_b(t_info **info)
 void	sort_all(t_info **info)
 {
 	int		pivot_a;
-	int		pivot_b;
+	// int		pivot_b;
 
+	(*info)->pivot = NULL;
 	pivot_a = find_pivot(info, A);
 	split_stacklst_mv_smaller(info, pivot_a);
 	while (!is_sorted((*info)->stack_a, (*info)->stack_b))
 	{
-		pivot_b = sort_stack_b(info);
-		if (pivot_b < 0)
-			pivot_b = (*info)->a_max;
+		sort_stack_b(info);
 		stack_b_push_back(info);
 		ps_print_stack(*info, "round end", 0);
+		pivot_a = 0;
+		while (pivot_a < (*info)->a_min && pivot_a != -1)
+			pivot_a = rmv_operation(&(*info)->pivot);
+		if (pivot_a == -1)
+			pivot_a = (*info)->a_len;
 		if (!is_sorted((*info)->stack_a, (*info)->stack_b))
-			split_stacklst_mv_smaller(info, pivot_b);
+			split_stacklst_mv_smaller(info, pivot_a);
 	}
+	free_t_instruct(&(*info)->pivot);
 }

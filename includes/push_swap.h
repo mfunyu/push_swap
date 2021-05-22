@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:20:53 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/22 23:43:42 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/23 00:10:55 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_info
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	t_instruc	*instructions;
+	t_instruc	*pivot;
 	int			sorted_id;
 	int			a_len;
 	int			a_pivot;
@@ -69,6 +70,8 @@ typedef struct s_info
 	int			b_max;
 	int			b_min;
 }				t_info;
+
+void	print_pivots(t_instruc *pivot);
 
 /*
 ** inits
@@ -103,11 +106,14 @@ int		count_stacklst(t_stack *lst);
 void	record_swap(t_stack **stack, t_list **instructions,
 			t_stack_type type);
 
+void	add_operation(t_instruc **instructions, t_operation_name name);
+void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
+			t_info **info, t_operation_name op_name);
+int		rmv_operation(t_instruc **instructions);
+
 /*
 ** prints
 */
-void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
-			t_info **info, t_operation_name op_name);
 void	print_instructions(t_info *info);
 void	ps_print_stack(t_info *info, char *title, int option);
 void	print_operation(t_operation_name name);
@@ -115,5 +121,6 @@ void	print_operation(t_operation_name name);
 void	clear_info(t_info **info);
 void	clear_exit(t_stack **stack_a, t_stack **stack_b,
 			t_info **info, t_instruc **instructions);
+void	free_t_instruct(t_instruc **used);
 
 #endif
