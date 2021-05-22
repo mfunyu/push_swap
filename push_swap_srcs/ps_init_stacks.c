@@ -26,6 +26,7 @@ void	init_t_info(t_info **info, int a_index, t_stack **stack_a, t_stack **stack_
 	(*info)->b_max = 0;
 	(*info)->a_min = 0;
 	(*info)->a_max = a_index;
+	(*info)->a_pivot = -1;
 	(*info)->a_len = a_index;
 	(*info)->sorted_id = -1;
 	(*info)->stack_a = *stack_a;

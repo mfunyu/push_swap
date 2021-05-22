@@ -52,6 +52,7 @@ void	split_stacklst_mv_smaller(t_info **info, int pivot_a)
 		}
 	}
 	ps_print_stack(*info, "pb", 0);
+	// printf("\n\nbmax: %d min: %d\n", (*info)->b_max, (*info)->b_min);
 }
 
 void	split_stacklst_mv_larger(t_info **info, int pivot_b)
@@ -72,7 +73,16 @@ void	split_stacklst_mv_larger(t_info **info, int pivot_b)
 			while (degree)
 			{
 				degree--;
-				exec_add_instructions(src, dst, info, rb);
+				if ((*src)->order == (*info)->sorted_id + 1)
+				{
+					(*src)->sorted = 1;
+					exec_add_instructions(src, dst, info, pa);
+					exec_add_instructions(dst, NULL, info, ra);
+					(*info)->sorted_id++;
+					(*info)->b_min++;
+				}
+				else
+					exec_add_instructions(src, dst, info, rb);
 			}
 			exec_add_instructions(src, dst, info, pa);
 			working = *src;
@@ -86,4 +96,5 @@ void	split_stacklst_mv_larger(t_info **info, int pivot_b)
 	(*info)->b_max = pivot_b;
 	(*info)->a_min = (*info)->b_max + 1;
 	ps_print_stack(*info, "pa", 0);
+	// printf("\n\nbmax: %d min: %d \n", (*info)->b_max, (*info)->b_min);
 }
