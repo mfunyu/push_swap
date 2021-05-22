@@ -121,4 +121,5 @@ void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
 		operation_rotate_one(stacksrc);
 	else if (op_type == revrotate)
 		operation_revrotate_one(stacksrc);
+	// print_operation(op_name);
 }

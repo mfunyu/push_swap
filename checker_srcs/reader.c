@@ -42,7 +42,7 @@ static int	get_each_operation( t_list **instructions)
 			return (SUCCESS);
 		if (!is_valid_operation_type(operator))
 		{
-			null_free(&operator);
+			null_free((void **)&operator);
 			return (ERROR);
 		}
 		new = ft_lstnew_dup(operator);
@@ -50,7 +50,7 @@ static int	get_each_operation( t_list **instructions)
 			exit(EXIT_FAILURE);
 		if (ft_lstadd_back(instructions, new) == ERROR)
 			exit(EXIT_FAILURE);
-		null_free(&operator);
+		null_free((void **)&operator);
 	}
 	return (SUCCESS);
 }

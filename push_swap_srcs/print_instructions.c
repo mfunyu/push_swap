@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static void	print_operation(t_operation_name name)
+void	print_operation(t_operation_name name)
 {
 	if (name == sa)
 		ft_putendl_fd("sa", 1);

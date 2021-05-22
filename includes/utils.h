@@ -68,6 +68,6 @@ void	operation_revrotate_both(t_stack **stack_a, t_stack **stack_b);
 /*
 ** utils
 */
-void	null_free(char **elem);
+void	null_free(void **elem);
 
 #endif

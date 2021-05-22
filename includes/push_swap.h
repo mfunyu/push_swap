@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:20:53 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/22 02:30:17 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/22 20:26:01 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@ int		ps_init_info(t_info **info, char **av, int ac, int option);
 int		init_stacks(t_stack **stack_a, t_stack **stack_b, char **av, int ac);
 void	stacklst_init(t_stack **head, int elem);
 
+t_stack	*get_order(char **av, int a_len);
+int		check_av_dup(t_stack *sorted_stack);
+void	init_stacklst_a(t_stack **stack_a, t_stack *sorted_stack,
+			char **av, int a_len);
 void	qsort_stack(t_stack sort_stack[], int first, int last);
 
 /*
@@ -105,7 +109,10 @@ void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
 			t_info **info, t_operation_name op_name);
 void	print_instructions(t_info *info);
 void	ps_print_stack(t_info *info, char *title, int option);
+void	print_operation(t_operation_name name);
 
 void	clear_info(t_info **info);
+void	clear_exit(t_stack **stack_a, t_stack **stack_b,
+			t_info **info, t_instruc **instructions);
 
 #endif

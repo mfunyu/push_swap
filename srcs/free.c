@@ -6,14 +6,16 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 22:20:12 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/19 00:46:57 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/22 19:45:17 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-void	null_free(char **elem)
+void	null_free(void **elem)
 {
+	if (!elem || !*elem)
+		return ;
 	free(*elem);
 	*elem = NULL;
 }

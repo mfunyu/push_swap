@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 10:16:24 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/22 00:07:36 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/22 18:41:15 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static void	print_format(char *order, char *elem, int b)
 		ft_putendl_fd("]", 1);
 	else
 		ft_putstr_fd("]", 1);
+	free(order);
+	free(elem);
 }
 
 static void	print_format_a(int i, char *order, char *elem)
