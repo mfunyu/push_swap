@@ -21,13 +21,3 @@ void	sort_stack(t_info **info, t_stack_type type)
 	else
 		sort_all(info);
 }
-
-/*
-A基準値決める
-* Bに基準値以下push
-* Bが3以下になるまで
-** B基準値決める
-** B基準値以上Aにpush
-* なったら
-** BをAにpush (pa, ra)
-*/

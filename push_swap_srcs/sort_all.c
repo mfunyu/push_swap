@@ -9,9 +9,6 @@ int	find_pivot(t_info **info, t_stack_type type)
 	else
 	{
 		pivot = ((*info)->b_max - (*info)->b_min) / 2 + (*info)->b_min;
-		// pivot = (*info)->b_min + 2;
-		// if (pivot > (*info)->b_max)
-		// 	pivot = (*info)->b_max;
 	}
 	return (pivot);
 }
@@ -57,13 +54,4 @@ void	sort_all(t_info **info)
 		if (!is_sorted((*info)->stack_a, (*info)->stack_b))
 			split_stacklst_mv_smaller(info, pivot_b);
 	}
-	// working = *stack_b;
-	// while (!working->nil)
-	// {
-	// 	exec_add_instructions(stack_b, stack_a, instructions, pa);
-	// 	exec_add_instructions(stack_b, stack_a, instructions, ra);
-	// 	working = working->next;
-	// }
-	// print_stack(*stack_a, *stack_b, "split a2");
-	// free(info);
 }
