@@ -8,7 +8,11 @@ int	find_pivot(t_info **info, t_stack_type type)
 	if (type == A)
 		pivot = ((*info)->a_max - (*info)->a_min) / 2 + (*info)->a_min;
 	else
+	{
 		pivot = ((*info)->b_max - (*info)->b_min) / 2 + (*info)->b_min;
+		if (pivot < (*info)->b_min + 2 && (*info)->b_min + 2 < (*info)->b_max)
+			pivot = (*info)->b_min + 2;
+	}
 	new = malloc(sizeof(t_instruc));
 	new->operation = pivot;
 	new->next = (*info)->pivot;
