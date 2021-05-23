@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int	count_stacklst(t_stack *lst)
+int	stack_count(t_stack *lst)
 {
 	int		count;
 

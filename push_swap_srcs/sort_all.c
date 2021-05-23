@@ -42,8 +42,7 @@ void	sort_all(t_info **info)
 	while (!is_sorted((*info)->stack_a, (*info)->stack_b))
 	{
 		sort_stack_b(info);
-		stack_b_push_back(info);
-		ps_print_stack(*info, "round end", 0);
+		stack_b_push_a(info);
 		pivot = (*info)->a_len;
 		now = (*info)->pivot;
 		while (now)

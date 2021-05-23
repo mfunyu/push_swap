@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:20:53 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/24 00:13:27 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/24 00:41:58 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,13 @@ void	sort_five(t_info **info, int len);
 void	sort_all(t_info **info);
 void	split_stack_a(t_info **info, int pivot_a);
 void	split_stack_b(t_info **info, int pivot_b);
-bool	stack_b_push_back(t_info **info);
+bool	stack_b_push_a(t_info **info);
 bool	is_ordered(t_stack *stack_a);
 
 /*
 ** stack managements
 */
-int		count_stacklst(t_stack *lst);
+int		stack_count(t_stack *lst);
 void	record_swap(t_stack **stack, t_list **instructions,
 			t_stack_type type);
 
