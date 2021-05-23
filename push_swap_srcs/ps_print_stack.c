@@ -45,21 +45,11 @@ static void	print_format_a(int i, char *order, char *elem)
 		ft_putstr_fd("                             ", 1);
 }
 
-void	ps_print_stack(t_info *info, char *title, int option)
+void	ps_print_line(t_stack *lst_a, t_stack *lst_b)
 {
-	t_stack		*lst_a;
-	t_stack		*lst_b;
-	static int	flag;
-	int			i;
+	int		i;
 
-	if (option == 1)
-		flag = option;
-	if (!flag)
-		return ;
 	i = 0;
-	lst_a = info->stack_a;
-	lst_b = info->stack_b;
-	print_title(title);
 	while (!lst_a->nil || (lst_b && !lst_b->nil))
 	{
 		if (!lst_a->nil)
@@ -78,4 +68,16 @@ void	ps_print_stack(t_info *info, char *title, int option)
 			ft_putendl_fd("", 1);
 		i++;
 	}
+}
+
+void	ps_print_stack(t_info *info, char *title, int option)
+{
+	static int	flag;
+
+	if (option == 1)
+		flag = option;
+	if (!flag)
+		return ;
+	print_title(title);
+	ps_print_line(info->stack_a, info->stack_b);
 }

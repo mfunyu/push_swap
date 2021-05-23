@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:20:53 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/23 00:10:55 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/23 21:25:28 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,9 @@ void	add_operation(t_instruc **instructions, t_operation_name name);
 void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
 			t_info **info, t_operation_name op_name);
 int		rmv_operation(t_instruc **instructions);
+
+int		simplelst_add_back(t_instruc **simplelst, t_operation_name value);
+int		simplelst_pop(t_instruc **simplelst);
 
 /*
 ** prints

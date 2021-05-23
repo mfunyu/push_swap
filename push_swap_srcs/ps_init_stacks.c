@@ -32,6 +32,7 @@ void	init_t_info(t_info **info, int a_index, t_stack **stack_a, t_stack **stack_
 	(*info)->stack_a = *stack_a;
 	(*info)->stack_b = *stack_b;
 	(*info)->instructions = NULL;
+	(*info)->pivot = NULL;
 }
 
 int	ps_init_info(t_info **info, char **av, int ac, int option)

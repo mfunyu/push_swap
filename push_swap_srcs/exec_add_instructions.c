@@ -1,112 +1,98 @@
 #include "push_swap.h"
 
-void	add_operation(t_instruc **instructions, t_operation_name name)
+static t_operation_type	set_operation_revrotate(t_instruc **instructions,
+			t_operation_name type, t_operation_name prev)
 {
-	t_instruc	*last;
-	t_instruc	*new;
+	int		ret;
 
-	new = malloc(sizeof(t_instruc));
-	new->operation = name;
-	new->next = NULL;
-	if (!new)
-		exit(EXIT_FAILURE);
-	if (*instructions == NULL)
-		*instructions = new;
-	else
-	{
-		last = *instructions;
-		while (last->next)
-			last = last->next;
-		last->next = new;
-	}
-}
-
-int	rmv_operation(t_instruc **instructions)
-{
-	t_instruc	*last;
-	int			value;
-
-	if (!instructions || !*instructions)
-		return (-1);
-	last = *instructions;
-	if (last->next)
-	{
-		while (last->next->next)
-			last = last->next;
-		value = last->next->operation;
-		free(last->next);
-		last->next = NULL;
-	}
-	else
-	{
-		value = last->operation;
-		free(last);
-		*instructions = NULL;
-	}
-	return (value);
-}
-
-static t_operation_type	set_operation2(t_instruc **instructions, t_operation_name type,
-								t_operation_name prev)
-{
+	ret = 0;
 	if (type == rra || type == rrb)
 	{
 		if (type == rra && prev != ra && prev != rrb)
-			add_operation(instructions, rra);
+			ret = simplelst_add_back(instructions, rra);
 		else if (type == rrb && prev != rb && prev != rra)
-			add_operation(instructions, rrb);
+			ret = simplelst_add_back(instructions, rrb);
 		else
 		{
-			rmv_operation(instructions);
+			simplelst_pop(instructions);
 			if (prev == rra || prev == rrb)
-				add_operation(instructions, rrr);
+				ret = simplelst_add_back(instructions, rrr);
 		}
+		if (ret)
+			return (ERROR);
 		return (revrotate);
 	}
-	else if (type == pa || type == pb)
-	{
-		if (type == pa && prev != pb)
-			add_operation(instructions, pa);
-		else if (type == pb && prev != pa)
-			add_operation(instructions, pb);
-		else
-			rmv_operation(instructions);
-		return (push);
-	}
-	return (0);
+	return (ERROR);
 }
 
-static t_operation_type	set_operation(t_instruc **instructions, t_operation_name type,
+static t_operation_type	set_operation_push(t_instruc **instructions, t_operation_name type,
 								t_operation_name prev)
 {
+	int		ret;
+
+	ret = 0;
+	if (type == pa || type == pb)
+	{
+		if (type == pa && prev != pb)
+			ret = simplelst_add_back(instructions, pa);
+		else if (type == pb && prev != pa)
+			ret = simplelst_add_back(instructions, pb);
+		else
+			simplelst_pop(instructions);
+		if (ret)
+			return (ERROR);
+		return (push);
+	}
+	return (set_operation_revrotate(instructions, type, prev));
+}
+
+static t_operation_type	set_operation_rotate(t_instruc **instructions, t_operation_name type,
+								t_operation_name prev)
+{
+	int		ret;
+
+	ret = 0;
+	if (type == ra || type == rb)
+	{
+		if (type == ra && prev != rra && prev != rb)
+			ret = simplelst_add_back(instructions, ra);
+		else if (type == rb && prev != rrb && prev != ra)
+			ret = simplelst_add_back(instructions, rb);
+		else
+		{
+			simplelst_pop(instructions);
+			if (prev == ra || prev == rb)
+				ret = simplelst_add_back(instructions, rr);
+		}
+		if (ret)
+			return (ERROR);
+		return (rotate);
+	}
+	return (set_operation_push(instructions, type, prev));
+}
+
+static t_operation_type	set_operation_swap(t_instruc **instructions, t_operation_name type,
+								t_operation_name prev)
+{
+	int		ret;
+
+	ret = 0;
 	if (type == sa || type == sb)
 	{
 		if (type == sa && prev != sb)
-			add_operation(instructions, sa);
+			ret = simplelst_add_back(instructions, sa);
 		else if (type == sb && prev != sa)
-			add_operation(instructions, sb);
+			ret = simplelst_add_back(instructions, sb);
 		else
 		{
-			rmv_operation(instructions);
-			add_operation(instructions, ss);
+			simplelst_pop(instructions);
+			ret = simplelst_add_back(instructions, ss);
 		}
+		if (ret)
+			return (ERROR);
 		return (swap);
 	}
-	else if (type == ra || type == rb)
-	{
-		if (type == ra && prev != rra && prev != rb)
-			add_operation(instructions, ra);
-		else if (type == rb && prev != rrb && prev != ra)
-			add_operation(instructions, rb);
-		else
-		{
-			rmv_operation(instructions);
-			if (prev == ra || prev == rb)
-				add_operation(instructions, rr);
-		}
-		return (rotate);
-	}
-	return (set_operation2(instructions, type, prev));
+	return (set_operation_rotate(instructions, type, prev));
 }
 
 void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
@@ -125,8 +111,9 @@ void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
 			last = last->next;
 		prev = last->operation;
 	}
-	op_type = set_operation(&(*info)->instructions, op_name, prev);
-	prev = op_name;
+	op_type = set_operation_swap(&(*info)->instructions, op_name, prev);
+	if ((int)op_type == ERROR)
+		clear_exit(stacksrc, stackdst, info, &(*info)->instructions);
 	if (op_type == swap)
 		operation_swap_one(stacksrc);
 	else if (op_type == push)
@@ -135,5 +122,5 @@ void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
 		operation_rotate_one(stacksrc);
 	else if (op_type == revrotate)
 		operation_revrotate_one(stacksrc);
-	// print_operation(op_name);
+	prev = op_name;
 }
