@@ -13,9 +13,7 @@ int	check_dup_add_back(t_stack **stack_a, t_stack *new)
 		{
 			if (node->elem == new->elem)
 			{
-				stacklst_clear(stack_a);
 				stacklst_clear(&new);
-				ft_putendl_fd("Error", 2);
 				return (ERROR);
 			}
 			if (!node->next)
@@ -43,7 +41,7 @@ int	ch_init_stacks(t_stack **stack_a, t_stack **stack_b, char **av, int option)
 	{
 		new = stacklst_new(ft_atoi(av[i]));
 		if (!new)
-			exit(EXIT_FAILURE);
+			clear_exit(stack_b, stack_a);
 		if (check_dup_add_back(stack_a, new) == ERROR)
 			return (ERROR);
 	}

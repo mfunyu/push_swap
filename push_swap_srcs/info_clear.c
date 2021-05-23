@@ -31,6 +31,7 @@ void	clear_exit(t_stack **stack1, t_stack **stack2, t_info **info, bool set)
 	{
 		stacklst_clear(stack1);
 		stacklst_clear(stack2);
+		exit(EXIT_FAILURE);
 	}
 	clear_info(info);
 	exit(EXIT_FAILURE);

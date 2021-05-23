@@ -25,17 +25,21 @@ int		ch_init_stacks(t_stack **stack_a, t_stack **stack_b,
 /*
 ** reader.c
 */
-int		read_instructions(t_stack **stack_a, t_list **instructions);
+int		read_instructions(t_list **instructions);
 
 /*
 ** executer.c
 */
-int		execute_instructions(t_stack **stack_a, t_stack **stack_b,
+void	execute_instructions(t_stack **stack_a, t_stack **stack_b,
 			t_list *instructions, int option);
 
 /*
 ** print
 */
 void	ch_print_stack(t_stack *lst_a, t_stack *lst_b, char *title, int option);
+
+void	clear_all(t_stack **stack_a, t_stack **stack_b, t_list **instructions);
+int		clear_return(t_stack **stack1, t_stack **stack2);
+void	clear_exit(t_stack **stack1, t_stack **stack2);
 
 #endif

@@ -1,12 +1,10 @@
 #include "utils.h"
 
-bool	is_valid_arg(int ac, char **av, int *option)
+bool	is_valid_arg(char **av, int *option)
 {
 	int		error;
 	int		i;
 
-	if (ac <= 1)
-		return (false);
 	i = 0;
 	if (ft_strncmp(av[1], "-v", 3) == 0)
 	{

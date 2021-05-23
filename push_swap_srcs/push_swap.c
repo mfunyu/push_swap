@@ -12,8 +12,10 @@ int	main(int ac, char **av)
 	t_info	*info;
 	int		option;
 
+	if (ac <= 1)
+		return (false);
 	option = 0;
-	if (!is_valid_arg(ac, av, &option))
+	if (!is_valid_arg(av, &option))
 		return (0);
 	if (ps_init_info(&info, av, ac, option) == ERROR)
 		return (0);

@@ -33,37 +33,39 @@ static int	get_each_operation( t_list **instructions)
 	char	*operator;
 	int		ret;
 
-	while (1)
+	while (ret > 0)
 	{
 		ret = get_next_line(0, &operator);
-		if (ret < 0)
-			exit(EXIT_FAILURE);
-		if (ret == 0)
-			return (SUCCESS);
-		if (!is_valid_operation_type(operator))
+		if (ret > 0)
 		{
+			if (!is_valid_operation_type(operator))
+			{
+				null_free((void **)&operator);
+				return (ERROR);
+			}
+			new = ft_lstnew_dup(operator);
 			null_free((void **)&operator);
-			return (ERROR);
+			if (ft_lstadd_back(instructions, new) == ERROR)
+				return (FAILURE);
 		}
-		new = ft_lstnew_dup(operator);
-		if (!new)
-			exit(EXIT_FAILURE);
-		if (ft_lstadd_back(instructions, new) == ERROR)
-			exit(EXIT_FAILURE);
-		null_free((void **)&operator);
 	}
+	if (ret < 0)
+		return (FAILURE);
+	if (ret == 0)
+		null_free((void **)&operator);
 	return (SUCCESS);
 }
 
-int	read_instructions(t_stack **stack_a, t_list **instructions)
+int	read_instructions(t_list **instructions)
 {
+	int		ret;
+
 	*instructions = NULL;
-	if (get_each_operation(instructions) == ERROR)
+	ret = get_each_operation(instructions);
+	if (ret != SUCCESS)
 	{
-		stacklst_clear(stack_a);
 		ft_lstclear(instructions, free);
-		ft_putendl_fd("Error", 2);
-		return (ERROR);
+		return (ret);
 	}
 	return (SUCCESS);
 }

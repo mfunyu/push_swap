@@ -24,6 +24,7 @@
 
 # define SUCCESS 0
 # define ERROR -1
+# define FAILURE 1
 
 typedef struct s_stack
 {
@@ -38,7 +39,7 @@ typedef struct s_stack
 /*
 ** checkarg.c
 */
-bool	is_valid_arg(int ac, char **av, int *option);
+bool	is_valid_arg(char **av, int *option);
 
 bool	is_sorted(t_stack *stack_a, t_stack *stack_b);
 

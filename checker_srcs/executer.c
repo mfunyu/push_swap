@@ -26,7 +26,7 @@ void	execute_operation(char *operation, t_stack **stack_a, t_stack **stack_b)
 		operation_revrotate_both(stack_a, stack_b);
 }
 
-int	execute_instructions(t_stack **stack_a, t_stack **stack_b,
+void	execute_instructions(t_stack **stack_a, t_stack **stack_b,
 									t_list *instructions, int option)
 {
 	t_list		*operation;
@@ -38,5 +38,4 @@ int	execute_instructions(t_stack **stack_a, t_stack **stack_b,
 		ch_print_stack(*stack_a, *stack_b, operation->content, option);
 		operation = operation->next;
 	}
-	return (0);
 }

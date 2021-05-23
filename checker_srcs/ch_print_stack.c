@@ -29,6 +29,7 @@ static void	print_format(char *elem, int b)
 		ft_putendl_fd("]", 1);
 	else
 		ft_putstr_fd("]", 1);
+	free(elem);
 }
 
 static void	print_format_a(int i, char *elem)
