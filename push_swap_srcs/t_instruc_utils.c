@@ -1,5 +1,18 @@
 #include "push_swap.h"
 
+int	simplelst_add_front(t_instruc **simplelst, t_operation_name value)
+{
+	t_instruc	*new;
+
+	new = malloc(sizeof(t_instruc));
+	if (!new)
+		return (ERROR);
+	new->operation = value;
+	new->next = *simplelst;
+	*simplelst = new;
+	return (SUCCESS);
+}
+
 int	simplelst_add_back(t_instruc **simplelst, t_operation_name value)
 {
 	t_instruc	*last;

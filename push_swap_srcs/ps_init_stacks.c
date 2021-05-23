@@ -17,11 +17,12 @@ int	init_stack_a(t_stack **stack_a, char **av, int a_len)
 	return (SUCCESS);
 }
 
-void	init_t_info(t_info **info, int a_index, t_stack **stack_a, t_stack **stack_b)
+void	init_t_info(t_info **info, int a_index,
+									t_stack **stack_a, t_stack **stack_b)
 {
 	*info = malloc(sizeof(t_info));
 	if (!*info)
-		clear_exit(stack_a, stack_b, NULL, NULL);
+		clear_exit(stack_a, stack_b, NULL, false);
 	(*info)->b_min = 0;
 	(*info)->b_max = 0;
 	(*info)->a_min = 0;
@@ -47,7 +48,7 @@ int	ps_init_info(t_info **info, char **av, int ac, int option)
 		return (ERROR);
 	stack_b = stacklst_nil();
 	if (!stack_b)
-		clear_exit(&stack_a, NULL, NULL, NULL);
+		clear_exit(&stack_a, NULL, NULL, false);
 	init_t_info(info, a_len - 1, &stack_a, &stack_b);
 	return (SUCCESS);
 }

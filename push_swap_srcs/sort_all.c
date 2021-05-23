@@ -3,7 +3,6 @@
 int	find_pivot(t_info **info, t_stack_type type)
 {
 	int			pivot;
-	t_instruc	*new;
 
 	if (type == A)
 		pivot = ((*info)->a_max - (*info)->a_min) / 2 + (*info)->a_min;
@@ -13,10 +12,8 @@ int	find_pivot(t_info **info, t_stack_type type)
 		if (pivot < (*info)->b_min + 2 && (*info)->b_min + 2 < (*info)->b_max)
 			pivot = (*info)->b_min + 2;
 	}
-	new = malloc(sizeof(t_instruc));
-	new->operation = pivot;
-	new->next = (*info)->pivot;
-	(*info)->pivot = new;
+	if (simplelst_add_front(&(*info)->pivot, pivot) == ERROR)
+		clear_exit(&(*info)->stack_a, &(*info)->stack_b, info, true);
 	return (pivot);
 }
 
@@ -27,11 +24,9 @@ void	sort_stack_b(t_info **info)
 	if (((*info)->b_max - (*info)->b_min) + 1 <= 3)
 	{
 		sort_stack(info, B);
-		ps_print_stack(*info, "b sorted", 0);
 		return ;
 	}
-	ps_print_stack(*info, "b moved", 0);
-	split_stacklst_mv_larger(info, find_pivot(info, B));
+	split_stack_b(info, find_pivot(info, B));
 	sort_stack_b(info);
 }
 
@@ -43,7 +38,7 @@ void	sort_all(t_info **info)
 	int			pivot;
 	t_instruc	*now;
 
-	split_stacklst_mv_smaller(info, find_pivot(info, A));
+	split_stack_a(info, find_pivot(info, A));
 	while (!is_sorted((*info)->stack_a, (*info)->stack_b))
 	{
 		sort_stack_b(info);
@@ -61,7 +56,6 @@ void	sort_all(t_info **info)
 			now = now->next;
 		}
 		if (!is_sorted((*info)->stack_a, (*info)->stack_b))
-			split_stacklst_mv_smaller(info, pivot);
+			split_stack_a(info, pivot);
 	}
-	free_t_instruct(&(*info)->pivot);
 }

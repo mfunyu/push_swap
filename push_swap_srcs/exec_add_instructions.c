@@ -25,8 +25,8 @@ static t_operation_type	set_operation_revrotate(t_instruc **instructions,
 	return (ERROR);
 }
 
-static t_operation_type	set_operation_push(t_instruc **instructions, t_operation_name type,
-								t_operation_name prev)
+static t_operation_type	set_operation_push(t_instruc **instructions,
+							t_operation_name type, t_operation_name prev)
 {
 	int		ret;
 
@@ -46,8 +46,8 @@ static t_operation_type	set_operation_push(t_instruc **instructions, t_operation
 	return (set_operation_revrotate(instructions, type, prev));
 }
 
-static t_operation_type	set_operation_rotate(t_instruc **instructions, t_operation_name type,
-								t_operation_name prev)
+static t_operation_type	set_operation_rotate(t_instruc **instructions,
+							t_operation_name type, t_operation_name prev)
 {
 	int		ret;
 
@@ -71,8 +71,8 @@ static t_operation_type	set_operation_rotate(t_instruc **instructions, t_operati
 	return (set_operation_push(instructions, type, prev));
 }
 
-static t_operation_type	set_operation_swap(t_instruc **instructions, t_operation_name type,
-								t_operation_name prev)
+static t_operation_type	set_operation_swap(t_instruc **instructions,
+								t_operation_name type, t_operation_name prev)
 {
 	int		ret;
 
@@ -96,7 +96,7 @@ static t_operation_type	set_operation_swap(t_instruc **instructions, t_operation
 }
 
 void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
-							t_info **info, t_operation_name op_name)
+								t_info **info, t_operation_name op_name)
 {
 	t_operation_name	prev;
 	t_operation_type	op_type;
@@ -113,7 +113,7 @@ void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
 	}
 	op_type = set_operation_swap(&(*info)->instructions, op_name, prev);
 	if ((int)op_type == ERROR)
-		clear_exit(stacksrc, stackdst, info, &(*info)->instructions);
+		clear_exit(stacksrc, stackdst, info, true);
 	if (op_type == swap)
 		operation_swap_one(stacksrc);
 	else if (op_type == push)

@@ -55,7 +55,8 @@ int	find_order(t_stack *sorted_stack, int elem)
 	return (-1);
 }
 
-void	init_stacklst_a(t_stack **stack_a, t_stack *sorted_stack, char **av, int a_len)
+void	init_stacklst_a(t_stack **stack_a, t_stack *sorted_stack,
+													char **av, int a_len)
 {
 	t_stack		*new;
 	int			i;
@@ -67,7 +68,7 @@ void	init_stacklst_a(t_stack **stack_a, t_stack *sorted_stack, char **av, int a_
 		if (!new)
 		{
 			null_free((void **)&sorted_stack);
-			clear_exit(stack_a, NULL, NULL, NULL);
+			clear_exit(stack_a, NULL, NULL, false);
 		}
 		new->order = find_order(sorted_stack, new->elem);
 		stacklst_insert((*stack_a)->prev->prev, (*stack_a)->prev, new);
