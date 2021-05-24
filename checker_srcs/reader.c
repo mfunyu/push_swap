@@ -33,21 +33,21 @@ static int	get_each_operation( t_list **instructions)
 	char	*operator;
 	int		ret;
 
+	ret = 1;
 	while (ret > 0)
 	{
 		ret = get_next_line(0, &operator);
-		if (ret > 0)
+		if (ret <= 0)
+			break ;
+		if (!is_valid_operation_type(operator))
 		{
-			if (!is_valid_operation_type(operator))
-			{
-				null_free((void **)&operator);
-				return (ERROR);
-			}
-			new = ft_lstnew_dup(operator);
 			null_free((void **)&operator);
-			if (ft_lstadd_back(instructions, new) == ERROR)
-				return (FAILURE);
+			return (ERROR);
 		}
+		new = ft_lstnew_dup(operator);
+		null_free((void **)&operator);
+		if (ft_lstadd_back(instructions, new) == ERROR)
+			return (FAILURE);
 	}
 	if (ret < 0)
 		return (FAILURE);
