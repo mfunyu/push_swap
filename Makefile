@@ -1,6 +1,6 @@
 NAME				:= push_swap
 
-SRCS_DIR			:= srcs
+SRCS_DIR			:= utils
 SRCS_FILES			:= $(wildcard ./srcs/*.c)
 # SRCS				:= $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 # OBJS				:= $(SRCS:.c=.o)
@@ -30,10 +30,10 @@ INCLUDES	:= -Iincludes -Ilibft -Iget_next_line
 LIBFT		:= libft
 LIBS		:= -L$(LIBFT) -lft
 CC			:= gcc
-CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES)
+CFLAGS		:= -g -Wall -Wextra -Werror $(INCLUDES)
 # CFLAGS		+= -g -fsanitize=address
 
-all		: $(NAME)
+all		: $(NAME) $(CHECKER)
 
 $(NAME)	: $(LIBFT) $(PS_OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(PS_OBJS) $(LIBS)
