@@ -36,7 +36,7 @@ void	sort_stack_b(t_info **info)
 void	sort_all(t_info **info)
 {
 	int			pivot;
-	t_instruc	*now;
+	t_simple	*now;
 
 	split_stack_a(info, find_pivot(info, A));
 	while (!is_sorted((*info)->stack_a, (*info)->stack_b))
@@ -47,9 +47,9 @@ void	sort_all(t_info **info)
 		now = (*info)->pivot;
 		while (now)
 		{
-			if ((int)now->operation > (*info)->a_min)
+			if (now->value > (*info)->a_min)
 			{
-				pivot = now->operation;
+				pivot = now->value;
 				break ;
 			}
 			now = now->next;

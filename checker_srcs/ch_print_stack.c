@@ -5,15 +5,15 @@ static void	print_title(char *str)
 	int		len;
 	int		i;
 
-	ft_putstr_fd("\e[36m----------", 1);
-	len = 10 - ft_strlen(str);
-	i = 0;
-	while (i++ < len / 2)
-		ft_putchar_fd(' ', 1);
+	ft_putstr_fd("\e[36m[", 1);
+	len = 5 - ft_strlen(str);
 	ft_putstr_fd(str, 1);
-	while (i++ <= len)
-		ft_putchar_fd(' ', 1);
-	ft_putstr_fd("----------\e[00m\n", 1);
+	ft_putstr_fd("] ", 1);
+	i = 0;
+	while (i++ < len)
+		ft_putchar_fd('-', 1);
+	ft_putstr_fd(" A ----  ", 1);
+	ft_putstr_fd(" ---- B ----\e[00m\n", 1);
 }
 
 static void	print_format(char *elem, int b)
@@ -39,7 +39,7 @@ static void	print_format_a(int i, char *elem)
 	if (elem)
 		print_format(elem, 0);
 	else
-		ft_putstr_fd("             ", 1);
+		ft_putstr_fd("              ", 1);
 }
 
 void	ch_print_stack(t_stack *lst_a, t_stack *lst_b, char *title, int option)
@@ -68,4 +68,5 @@ void	ch_print_stack(t_stack *lst_a, t_stack *lst_b, char *title, int option)
 			ft_putendl_fd("", 1);
 		i++;
 	}
+	ft_putstr_fd("\n", 1);
 }

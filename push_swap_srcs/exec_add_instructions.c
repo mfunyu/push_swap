@@ -1,7 +1,7 @@
 #include "push_swap.h"
 
-static t_operation_type	set_operation_revrotate(t_instruc **instructions,
-			t_operation_name type, t_operation_name prev)
+static t_op_type	set_operation_revrotate(t_simple **instructions,
+			t_op_name type, t_op_name prev)
 {
 	int		ret;
 
@@ -25,8 +25,8 @@ static t_operation_type	set_operation_revrotate(t_instruc **instructions,
 	return (ERROR);
 }
 
-static t_operation_type	set_operation_push(t_instruc **instructions,
-							t_operation_name type, t_operation_name prev)
+static t_op_type	set_operation_push(t_simple **instructions,
+							t_op_name type, t_op_name prev)
 {
 	int		ret;
 
@@ -46,8 +46,8 @@ static t_operation_type	set_operation_push(t_instruc **instructions,
 	return (set_operation_revrotate(instructions, type, prev));
 }
 
-static t_operation_type	set_operation_rotate(t_instruc **instructions,
-							t_operation_name type, t_operation_name prev)
+static t_op_type	set_operation_rotate(t_simple **instructions,
+							t_op_name type, t_op_name prev)
 {
 	int		ret;
 
@@ -71,8 +71,8 @@ static t_operation_type	set_operation_rotate(t_instruc **instructions,
 	return (set_operation_push(instructions, type, prev));
 }
 
-static t_operation_type	set_operation_swap(t_instruc **instructions,
-								t_operation_name type, t_operation_name prev)
+static t_op_type	set_operation_swap(t_simple **instructions,
+								t_op_name type, t_op_name prev)
 {
 	int		ret;
 
@@ -96,20 +96,19 @@ static t_operation_type	set_operation_swap(t_instruc **instructions,
 }
 
 void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
-								t_info **info, t_operation_name op_name)
+								t_info **info, t_op_name op_name)
 {
-	t_operation_name	prev;
-	t_operation_type	op_type;
-	t_instruc			*last;
+	t_op_name	prev;
+	t_op_type	op_type;
+	t_simple	*last;
 
 	last = (*info)->instructions;
-	if (!last)
-		prev = -1;
-	else
+	prev = -1;
+	if (last)
 	{
 		while (last->next)
 			last = last->next;
-		prev = last->operation;
+		prev = last->value;
 	}
 	op_type = set_operation_swap(&(*info)->instructions, op_name, prev);
 	if ((int)op_type == ERROR)
@@ -123,4 +122,5 @@ void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
 	else if (op_type == revrotate)
 		operation_revrotate_one(stacksrc);
 	prev = op_name;
+	ps_print_stack(*info, NULL, op_name, 0);
 }

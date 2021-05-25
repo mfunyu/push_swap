@@ -1,9 +1,9 @@
 #include "push_swap.h"
 
-void	free_t_instruct(t_instruc **used)
+void	free_t_instruct(t_simple **used)
 {
-	t_instruc	*now;
-	t_instruc	*tmp;
+	t_simple	*now;
+	t_simple	*tmp;
 
 	if (!used || !*used)
 		return ;

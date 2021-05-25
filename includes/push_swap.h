@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:20:53 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/25 20:58:50 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/25 21:49:59 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef enum e_stack_type
 	B
 }			t_stack_type;
 
-typedef enum e_operation_name
+typedef enum e_op_name
 {
 	sa,
 	sb,
@@ -34,28 +34,28 @@ typedef enum e_operation_name
 	rra,
 	rrb,
 	rrr
-}			t_operation_name;
+}			t_op_name;
 
-typedef enum e_operation_type
+typedef enum e_op_type
 {
 	swap,
 	push,
 	rotate,
 	revrotate
-}			t_operation_type;
+}			t_op_type;
 
-typedef struct s_instruc
+typedef struct s_simple
 {
-	t_operation_name	operation;
-	struct s_instruc	*next;
-}				t_instruc;
+	int				value;
+	struct s_simple	*next;
+}				t_simple;
 
 typedef struct s_info
 {
 	t_stack		*stack_a;
 	t_stack		*stack_b;
-	t_instruc	*instructions;
-	t_instruc	*pivot;
+	t_simple	*instructions;
+	t_simple	*pivot;
 	int			sorted_id;
 	int			a_len;
 	int			a_max;
@@ -94,20 +94,21 @@ bool	stack_b_push_a(t_info **info);
 */
 int		stack_count(t_stack *lst);
 void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
-			t_info **info, t_operation_name op_name);
+			t_info **info, t_op_name op_name);
 
 /*
 ** simplelst utils
 */
-int		simplelst_add_front(t_instruc **simplelst, t_operation_name value);
-int		simplelst_add_back(t_instruc **simplelst, t_operation_name value);
-int		simplelst_pop(t_instruc **simplelst);
+int		simplelst_add_front(t_simple **simplelst, t_op_name value);
+int		simplelst_add_back(t_simple **simplelst, t_op_name value);
+int		simplelst_pop(t_simple **simplelst);
 
 /*
 ** prints
 */
 void	print_instructions(t_info *info);
-void	ps_print_stack(t_info *info, char *title, int option);
+void	print_operation(t_op_name name, bool newline);
+void	ps_print_stack(t_info *info, char *title, t_op_name name, int option);
 
 /*
 ** info clear

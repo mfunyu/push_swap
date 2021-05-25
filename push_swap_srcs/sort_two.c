@@ -6,7 +6,7 @@
 void	sort_two(t_stack **stack, t_info **info, t_stack_type type)
 {
 	t_stack				*first;
-	t_operation_name	operation;
+	t_op_name	operation;
 
 	first = *stack;
 	if (first->elem < first->next->elem)

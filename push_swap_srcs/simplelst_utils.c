@@ -1,25 +1,25 @@
 #include "push_swap.h"
 
-int	simplelst_add_front(t_instruc **simplelst, t_operation_name value)
+int	simplelst_add_front(t_simple **simplelst, t_op_name value)
 {
-	t_instruc	*new;
+	t_simple	*new;
 
-	new = malloc(sizeof(t_instruc));
+	new = malloc(sizeof(t_simple));
 	if (!new)
 		return (ERROR);
-	new->operation = value;
+	new->value = value;
 	new->next = *simplelst;
 	*simplelst = new;
 	return (SUCCESS);
 }
 
-int	simplelst_add_back(t_instruc **simplelst, t_operation_name value)
+int	simplelst_add_back(t_simple **simplelst, t_op_name value)
 {
-	t_instruc	*last;
-	t_instruc	*new;
+	t_simple	*last;
+	t_simple	*new;
 
-	new = malloc(sizeof(t_instruc));
-	new->operation = value;
+	new = malloc(sizeof(t_simple));
+	new->value = value;
 	new->next = NULL;
 	if (!new)
 		return (ERROR);
@@ -35,9 +35,9 @@ int	simplelst_add_back(t_instruc **simplelst, t_operation_name value)
 	return (SUCCESS);
 }
 
-int	simplelst_pop(t_instruc **simplelst)
+int	simplelst_pop(t_simple **simplelst)
 {
-	t_instruc	*last;
+	t_simple	*last;
 	int			value;
 
 	if (!simplelst || !*simplelst)
@@ -47,13 +47,13 @@ int	simplelst_pop(t_instruc **simplelst)
 	{
 		while (last->next->next)
 			last = last->next;
-		value = last->next->operation;
+		value = last->next->value;
 		free(last->next);
 		last->next = NULL;
 	}
 	else
 	{
-		value = last->operation;
+		value = last->value;
 		free(last);
 		*simplelst = NULL;
 	}

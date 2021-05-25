@@ -1,19 +1,26 @@
 #include "push_swap.h"
 
-static void	print_title(char *str)
+static void	print_title(t_op_name operation, char *str)
 {
 	int		len;
 	int		i;
 
-	ft_putstr_fd("\e[36m---------", 1);
-	len = 9 - ft_strlen(str);
+	ft_putstr_fd("\e[36m<<", 1);
+	len = 9;
+	if (operation >= 8)
+		len--;
+	if (str)
+		len = 11 - ft_strlen(str);
 	i = 0;
-	while (i++ < len / 2)
-		ft_putchar_fd(' ', 1);
-	ft_putstr_fd(str, 1);
+	if (str)
+		ft_putstr_fd(str, 1);
+	else
+		print_operation(operation, false);
+	ft_putstr_fd(">> ", 1);
 	while (i++ <= len)
-		ft_putchar_fd(' ', 1);
-	ft_putstr_fd("---------\e[00m\n", 1);
+		ft_putchar_fd('=', 1);
+	ft_putstr_fd("_a_==========  ", 1);
+	ft_putstr_fd(" ============_b_===========\e[00m\n", 1);
 }
 
 static void	print_format(char *order, char *elem, int b)
@@ -70,7 +77,7 @@ void	ps_print_line(t_stack *lst_a, t_stack *lst_b)
 	}
 }
 
-void	ps_print_stack(t_info *info, char *title, int option)
+void	ps_print_stack(t_info *info, char *title, t_op_name name, int option)
 {
 	static int	flag;
 
@@ -78,6 +85,7 @@ void	ps_print_stack(t_info *info, char *title, int option)
 		flag = option;
 	if (!flag)
 		return ;
-	print_title(title);
+	print_title(name, title);
 	ps_print_line(info->stack_a, info->stack_b);
+	ft_putstr_fd("\n", 1);
 }

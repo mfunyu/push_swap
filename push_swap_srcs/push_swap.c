@@ -12,9 +12,9 @@ int	main(int ac, char **av)
 		return (0);
 	if (ps_init_info(&info, av, ac, option) == ERROR)
 		return (0);
-	ps_print_stack(info, "start", option);
+	ps_print_stack(info, "start", -1, option);
 	sort_stack(&info, A);
-	ps_print_stack(info, "end", 0);
+	ps_print_stack(info, "end", -1, 0);
 	print_instructions(info);
 	clear_info(&info);
 	return (0);
