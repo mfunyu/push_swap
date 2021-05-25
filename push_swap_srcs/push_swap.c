@@ -1,12 +1,5 @@
 #include "push_swap.h"
 
-// void	end(void)__attribute__((destructor));
-
-// void	end(void)
-// {
-// 	system("leaks push_swap");
-// }
-
 int	main(int ac, char **av)
 {
 	t_info	*info;

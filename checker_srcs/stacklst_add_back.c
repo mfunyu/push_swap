@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "checker.h"
 
 void	stacklst_add_back(t_stack **lst, t_stack *new)
 {

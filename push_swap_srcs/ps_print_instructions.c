@@ -37,15 +37,3 @@ void	print_instructions(t_info *info)
 		operation = operation->next;
 	}
 }
-
-void	print_pivots(t_instruc *pivot)
-{
-	while (pivot)
-	{
-		printf("%d ", pivot->operation);
-		pivot = pivot->next;
-		if (pivot)
-			printf("-> ");
-	}
-	printf("\n");
-}

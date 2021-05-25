@@ -34,6 +34,13 @@ void	execute_instructions(t_stack **stack_a, t_stack **stack_b,
 			t_list *instructions, int option);
 
 /*
+** stacklst
+*/
+void	stacklst_add_back(t_stack **lst, t_stack *new);
+void	stacklst_add_front(t_stack **lst, t_stack *new);
+t_stack	*stacklst_last(t_stack *lst);
+
+/*
 ** print
 */
 void	ch_print_stack(t_stack *lst_a, t_stack *lst_b, char *title, int option);

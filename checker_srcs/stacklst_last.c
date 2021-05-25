@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "checker.h"
 
 t_stack	*stacklst_last(t_stack *lst)
 {

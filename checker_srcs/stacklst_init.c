@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "checker.h"
 
 void	stacklst_init(t_stack **head, int elem)
 {

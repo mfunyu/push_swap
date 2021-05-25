@@ -1,12 +1,5 @@
 #include "checker.h"
 
-void	end(void)__attribute__((destructor));
-
-void	end(void)
-{
-	system("leaks checker");
-}
-
 void	display_result(t_stack *stack_a, t_stack *stack_b)
 {
 	if (is_sorted(stack_a, stack_b))

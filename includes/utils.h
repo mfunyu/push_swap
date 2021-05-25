@@ -37,19 +37,15 @@ typedef struct s_stack
 }				t_stack;
 
 /*
-** checkarg.c
+** check
 */
 bool	is_valid_arg(char **av, int *option);
-
 bool	is_sorted(t_stack *stack_a, t_stack *stack_b);
 
 /*
 ** stack_list
 */
-t_stack	*stacklst_last(t_stack *lst);
 t_stack	*stacklst_new(int elem);
-void	stacklst_add_back(t_stack **lst, t_stack *new);
-void	stacklst_add_front(t_stack **lst, t_stack *new);
 void	stacklst_clear(t_stack **lst);
 t_stack	*stacklst_nil(void);
 void	stacklst_insert(t_stack *a, t_stack *b, t_stack *new);
