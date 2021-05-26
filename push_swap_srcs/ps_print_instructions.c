@@ -28,6 +28,60 @@ void	print_operation(t_op_name name, bool newline)
 		ft_putstr_fd("\n", 1);
 }
 
+bool	check_is_unneccesary_sb(t_simple *now)
+{
+	t_simple	*head;
+	int			i;
+
+	i = 0;
+	head = now;
+	while (i < 2)
+	{
+		if (now->value != pa || now->next->value != ra)
+			return (false);
+		now = now->next->next;
+		i++;
+	}
+	if (i == 2)
+	{
+		while (i--)
+		{
+			head->value = pa;
+			head->next->next->value = ra;
+			head = head->next;
+		}
+		return (true);
+	}
+	return (false);
+}
+
+bool	check_is_unneccesary_sort_three(t_simple *now)
+{
+	t_simple	*head;
+	int			i;
+
+	i = 0;
+	head = now;
+	while (i < 3)
+	{
+		if (now->value != pa || now->next->value != ra)
+			return (false);
+		now = now->next->next;
+		i++;
+	}
+	if (i == 3)
+	{
+		while (i--)
+		{
+			head->value = pa;
+			head->next->next->next->value = ra;
+			head = head->next;
+		}
+		return (true);
+	}
+	return (false);
+}
+
 void	print_instructions(t_info *info)
 {
 	t_simple	*operation;
@@ -35,6 +89,17 @@ void	print_instructions(t_info *info)
 	operation = info->instructions;
 	while (operation)
 	{
+		if (operation->value == sb && check_is_unneccesary_sb(operation->next))
+		{
+			operation = operation->next;
+			continue ;
+		}
+		if (operation->value == sb && operation->next->value == rrb
+			&& check_is_unneccesary_sort_three(operation->next->next))
+		{
+			operation = operation->next->next;
+			continue ;
+		}
 		print_operation(operation->value, true);
 		operation = operation->next;
 	}
