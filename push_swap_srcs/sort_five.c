@@ -20,7 +20,7 @@ int	get_index_smallest_a(t_stack *stack_a, t_info **info)
 */
 void	sort_five(t_info **info, int len)
 {
-	int					s_index;
+	int			s_index;
 	t_op_name	direction;
 
 	if (is_sorted((*info)->stack_a, (*info)->stack_b))

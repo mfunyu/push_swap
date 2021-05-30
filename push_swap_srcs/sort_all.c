@@ -23,7 +23,20 @@ void	sort_stack_b(t_info **info)
 		return ;
 	if (((*info)->b_max - (*info)->b_min) + 1 <= 3)
 	{
-		sort_stack(info, B);
+		while (!(*info)->stack_b->nil)
+		{
+			exec_add_instructions(&(*info)->stack_b, &(*info)->stack_a,
+				info, pa);
+			while ((*info)->stack_a->order == (*info)->sorted_id + 1)
+			{
+				(*info)->stack_a->sorted = 1;
+				exec_add_instructions(&(*info)->stack_a, NULL, info, ra);
+				(*info)->sorted_id++;
+			}
+		}
+		(*info)->b_max = -1;
+		(*info)->b_min = -1;
+		(*info)->a_min = (*info)->sorted_id + 1;
 		return ;
 	}
 	split_stack_b(info, find_pivot(info, B));
@@ -42,7 +55,6 @@ void	sort_all(t_info **info)
 	while (!is_sorted((*info)->stack_a, (*info)->stack_b))
 	{
 		sort_stack_b(info);
-		stack_b_push_a(info);
 		pivot = (*info)->a_len;
 		now = (*info)->pivot;
 		while (now)

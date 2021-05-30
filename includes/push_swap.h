@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:20:53 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/25 21:49:59 by mfunyu           ###   ########.fr       */
+/*   Updated: 2021/05/30 20:37:16 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	sort_five(t_info **info, int len);
 void	sort_all(t_info **info);
 void	split_stack_a(t_info **info, int pivot_a);
 void	split_stack_b(t_info **info, int pivot_b);
-bool	stack_b_push_a(t_info **info);
 
 /*
 ** stack managements

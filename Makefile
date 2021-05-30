@@ -29,7 +29,6 @@ PS_SRCS_FILES		:= push_swap.c \
 						sort_three.c \
 						sort_two.c \
 						stack_a_init_utils.c \
-						stack_b_push_a.c \
 						stack_count.c \
 						stack_split.c \
 						stacks_init.c

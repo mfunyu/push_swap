@@ -8,7 +8,6 @@ void	skip_or_sort_stack_a(t_info **info, t_stack **src, t_stack **dst)
 		(*src)->sorted = 1;
 		exec_add_instructions(src, dst, info, ra);
 		(*info)->sorted_id++;
-		(*info)->a_min++;
 		return ;
 	}
 	else if ((*src)->order == (*info)->sorted_id + 2
@@ -30,7 +29,6 @@ void	skip_or_sort_stack_b(t_info **info, t_stack **src, t_stack **dst)
 		exec_add_instructions(src, dst, info, pa);
 		exec_add_instructions(dst, NULL, info, ra);
 		(*info)->sorted_id++;
-		(*info)->b_min++;
 		return ;
 	}
 	exec_add_instructions(src, dst, info, rb);
@@ -60,7 +58,7 @@ void	split_stack_a(t_info **info, int pivot_a)
 		working = working->next;
 		degree++;
 	}
-	(*info)->b_min = (*info)->a_min;
+	(*info)->b_min = (*info)->sorted_id + 1;
 	(*info)->b_max = pivot_a;
 	(*info)->a_min = pivot_a + 1;
 }
@@ -91,5 +89,6 @@ void	split_stack_b(t_info **info, int pivot_b)
 		degree++;
 	}
 	(*info)->b_max = pivot_b;
+	(*info)->b_min = (*info)->sorted_id + 1;
 	(*info)->a_min = pivot_b + 1;
 }
