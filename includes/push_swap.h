@@ -4,7 +4,16 @@
 # include "utils.h"
 
 # define CLEAR_SCREEN "\033[1J"
-# define SHIFT_CURSOR "\e[3E"
+# define SHIFT_CURSOR "\x1b[999B"
+# define CURSOR_POSITION "\x1b[6n"
+
+# define SLEEP_LENGTH 2000000
+# define STACK_WIDTH 11
+
+# define C_CYAN "\e[36m"
+# define C_DEFAULT "\e[00m"
+# define STR_STACK_B " ============_b_==========="
+# define STR_EMPTY_A "                             "
 
 typedef enum e_stack_type
 {
@@ -100,9 +109,11 @@ void	print_instructions(t_info *info);
 void	print_operation(t_op_name name, bool newline);
 void	ps_print_stack(t_info *info, char *title, t_op_name name, t_options option);
 void	print_format_a(int i, char *order, char *elem, int max);
-void	print_format(char *order, char *elem, int b);
+void	print_format(char *order, char *elem, bool is_stack_b);
 void	ps_print_line(t_stack *lst_a, t_stack *lst_b);
 void	ps_print_line_insize(t_stack *lst_a, t_stack *lst_b);
+void	sleep_and_clear(void);
+int		get_terminal_height(void);
 /*
 ** info clear
 */

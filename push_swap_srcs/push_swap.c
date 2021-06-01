@@ -10,16 +10,16 @@ int	main(int ac, char **av)
 		return (false);
 	option = DISABLED;
 	if (!is_valid_arg(av, &option))
-		return (0);
+		return (SUCCESS);
 	flag = 0;
 	if (option)
 		flag = 1;
 	if (ps_init_info(&info, av, ac, flag) == ERROR)
-		return (0);
+		return (SUCCESS);
 	ps_print_stack(info, "start", -1, option);
 	sort_stack(&info, A);
 	ps_print_stack(info, "end", -1, 0);
 	print_instructions(info);
 	clear_info(&info);
-	return (0);
+	return (SUCCESS);
 }
