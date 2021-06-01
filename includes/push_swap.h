@@ -1,19 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/08 17:20:53 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/30 20:37:16 by mfunyu           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # include "utils.h"
+
+# define CLEAR_SCREEN "\033[1J"
+# define SHIFT_CURSOR "\e[3E"
 
 typedef enum e_stack_type
 {
@@ -107,8 +98,11 @@ int		simplelst_pop(t_simple **simplelst);
 */
 void	print_instructions(t_info *info);
 void	print_operation(t_op_name name, bool newline);
-void	ps_print_stack(t_info *info, char *title, t_op_name name, int option);
-
+void	ps_print_stack(t_info *info, char *title, t_op_name name, t_options option);
+void	print_format_a(int i, char *order, char *elem, int max);
+void	print_format(char *order, char *elem, int b);
+void	ps_print_line(t_stack *lst_a, t_stack *lst_b);
+void	ps_print_line_insize(t_stack *lst_a, t_stack *lst_b);
 /*
 ** info clear
 */
