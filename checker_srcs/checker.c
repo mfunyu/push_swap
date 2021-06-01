@@ -3,9 +3,9 @@
 void	display_result(t_stack *stack_a, t_stack *stack_b)
 {
 	if (is_sorted(stack_a, stack_b))
-		ft_putendl_fd("OK", 1);
+		ft_putendl_fd("OK", STDOUT_FILENO);
 	else
-		ft_putendl_fd("KO", 1);
+		ft_putendl_fd("KO", STDOUT_FILENO);
 }
 
 int	main(int ac, char **av)

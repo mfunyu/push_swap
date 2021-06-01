@@ -6,9 +6,9 @@ static void	print_title(t_op_name operation, char *str, t_options flag)
 	int		i;
 
 	if (flag == DISPLAY)
-		ft_putstr_fd("<<", 1);
+		ft_putstr_fd("<<", STDOUT_FILENO);
 	else
-		ft_putstr_fd("\e[36m<<", 1);
+		ft_putstr_fd("\e[36m<<", STDOUT_FILENO);
 	len = 9;
 	if (operation >= 8)
 		len--;
@@ -16,34 +16,34 @@ static void	print_title(t_op_name operation, char *str, t_options flag)
 		len = 11 - ft_strlen(str);
 	i = 0;
 	if (str)
-		ft_putstr_fd(str, 1);
+		ft_putstr_fd(str, STDOUT_FILENO);
 	else
 		print_operation(operation, false);
-	ft_putstr_fd(">> ", 1);
+	ft_putstr_fd(">> ", STDOUT_FILENO);
 	while (i++ <= len)
-		ft_putchar_fd('=', 1);
-	ft_putstr_fd("_a_==========  ", 1);
+		ft_putchar_fd('=', STDOUT_FILENO);
+	ft_putstr_fd("_a_==========  ", STDOUT_FILENO);
 	if (flag == DISPLAY)
-		ft_putendl_fd(" ============_b_===========\n", 1);
+		ft_putendl_fd(" ============_b_===========\n", STDOUT_FILENO);
 	else
-		ft_putstr_fd(" ============_b_===========\e[00m\n", 1);
+		ft_putstr_fd(" ============_b_===========\e[00m\n", STDOUT_FILENO);
 }
 
 void	print_format(char *order, char *elem, int b)
 {
 	int		len;
 
-	ft_putstr_fd(" [ (", 1);
-	ft_putstr_fd(order, 1);
-	ft_putstr_fd(") ", 1);
+	ft_putstr_fd(" [ (", STDOUT_FILENO);
+	ft_putstr_fd(order, STDOUT_FILENO);
+	ft_putstr_fd(") ", STDOUT_FILENO);
 	len = 22 - ft_strlen(elem) - ft_strlen(order);
 	while (len--)
-		ft_putchar_fd(' ', 1);
-	ft_putstr_fd(elem, 1);
+		ft_putchar_fd(' ', STDOUT_FILENO);
+	ft_putstr_fd(elem, STDOUT_FILENO);
 	if (b)
-		ft_putendl_fd("]", 1);
+		ft_putendl_fd("]", STDOUT_FILENO);
 	else
-		ft_putstr_fd("]", 1);
+		ft_putstr_fd("]", STDOUT_FILENO);
 	free(order);
 	free(elem);
 }
@@ -93,7 +93,7 @@ void	ps_print_line(t_stack *lst_a, t_stack *lst_b)
 			lst_b = lst_b->next;
 		}
 		else
-			ft_putendl_fd("", 1);
+			ft_putendl_fd("", STDOUT_FILENO);
 		i++;
 	}
 }

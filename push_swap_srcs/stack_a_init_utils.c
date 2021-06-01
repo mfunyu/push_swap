@@ -31,7 +31,7 @@ int	check_av_dup(t_stack *sorted_stack)
 	{
 		if (sorted_stack[i].elem == prev)
 		{
-			ft_putendl_fd("Error", 2);
+			ft_putendl_fd("Error", STDERR_FILENO);
 			null_free((void **)&sorted_stack);
 			return (ERROR);
 		}

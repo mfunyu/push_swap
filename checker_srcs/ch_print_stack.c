@@ -5,41 +5,41 @@ static void	print_title(char *str)
 	int		len;
 	int		i;
 
-	ft_putstr_fd("\e[36m[", 1);
+	ft_putstr_fd("\e[36m[", STDOUT_FILENO);
 	len = 5 - ft_strlen(str);
-	ft_putstr_fd(str, 1);
-	ft_putstr_fd("] ", 1);
+	ft_putstr_fd(str, STDOUT_FILENO);
+	ft_putstr_fd("] ", STDOUT_FILENO);
 	i = 0;
 	while (i++ < len)
-		ft_putchar_fd('-', 1);
-	ft_putstr_fd(" A ----  ", 1);
-	ft_putstr_fd(" ---- B ----\e[00m\n", 1);
+		ft_putchar_fd('-', STDOUT_FILENO);
+	ft_putstr_fd(" A ----  ", STDOUT_FILENO);
+	ft_putstr_fd(" ---- B ----\e[00m\n", STDOUT_FILENO);
 }
 
 static void	print_format(char *elem, int b)
 {
 	int		len;
 
-	ft_putstr_fd(" [", 1);
-	len = 11 - ft_strlen(elem);
+	ft_putstr_fd(" [", STDOUT_FILENO);
+	len = STDOUT_FILENO - ft_strlen(elem);
 	while (len--)
-		ft_putchar_fd(' ', 1);
-	ft_putstr_fd(elem, 1);
+		ft_putchar_fd(' ', STDOUT_FILENO);
+	ft_putstr_fd(elem, STDOUT_FILENO);
 	if (b)
-		ft_putendl_fd("]", 1);
+		ft_putendl_fd("]", STDOUT_FILENO);
 	else
-		ft_putstr_fd("]", 1);
+		ft_putstr_fd("]", STDOUT_FILENO);
 	free(elem);
 }
 
 static void	print_format_a(int i, char *elem)
 {
-	ft_putnbr_fd(i, 1);
-	ft_putstr_fd(":", 1);
+	ft_putnbr_fd(i, STDOUT_FILENO);
+	ft_putstr_fd(":", STDOUT_FILENO);
 	if (elem)
 		print_format(elem, 0);
 	else
-		ft_putstr_fd("              ", 1);
+		ft_putstr_fd("              ", STDOUT_FILENO);
 }
 
 void	ch_print_stack(t_stack *lst_a, t_stack *lst_b, char *title, int option)
@@ -65,8 +65,8 @@ void	ch_print_stack(t_stack *lst_a, t_stack *lst_b, char *title, int option)
 			lst_b = lst_b->next;
 		}
 		else
-			ft_putendl_fd("", 1);
+			ft_putendl_fd("", STDOUT_FILENO);
 		i++;
 	}
-	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("\n", STDOUT_FILENO);
 }

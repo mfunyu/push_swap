@@ -5,13 +5,13 @@ int	get_terminal_height(void)
 	char	c;
 	int		i;
 
-	ft_putstr_fd("\x1b[999B", 1);
-	ft_putendl_fd("Setting up the height: please press enter", 1);
-	ft_putstr_fd("\x1b[6n", 1);
+	ft_putstr_fd("\x1b[999B", STDOUT_FILENO);
+	ft_putendl_fd("Setting up the height: please press enter", STDOUT_FILENO);
+	ft_putstr_fd("\x1b[6n", STDOUT_FILENO);
 	i = 0;
 	while (1)
 	{
-		read(0, &c, 1);
+		read(STDIN_FILENO, &c, 1);
 		if (ft_isdigit(c))
 			i = i * 10 + (c - '0');
 		if (c == ';')
@@ -28,7 +28,7 @@ void	ps_print_line_insize(t_stack *lst_a, t_stack *lst_b)
 	int			len_a;
 	int			i;
 
-	ft_putstr_fd(CLEAR_SCREEN, 1);
+	ft_putstr_fd(CLEAR_SCREEN, STDOUT_FILENO);
 	last = lst_a->prev->prev;
 	if (!height)
 		height = get_terminal_height() - 4;
@@ -54,11 +54,11 @@ void	ps_print_line_insize(t_stack *lst_a, t_stack *lst_b)
 			lst_b = lst_b->next;
 		}
 		else
-			ft_putendl_fd("", 1);
+			ft_putendl_fd("", STDOUT_FILENO);
 		i--;
 	}
 	printf("      (abbribiaated)    \n");
 	if (!lst_a->nil)
 		print_format_a(len_a, ft_itoa(last->order), ft_itoa(last->elem), len_a);
-	ft_putendl_fd("", 1);
+	ft_putendl_fd("", STDOUT_FILENO);
 }

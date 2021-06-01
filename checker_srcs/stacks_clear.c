@@ -11,7 +11,7 @@ int	clear_return(t_stack **stack1, t_stack **stack2)
 {
 	stacklst_clear(stack1);
 	stacklst_clear(stack2);
-	ft_putendl_fd("Error", 2);
+	ft_putendl_fd("Error", STDERR_FILENO);
 	return (ERROR);
 }
 
