@@ -13,7 +13,7 @@ int	main(int ac, char **av)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	t_list	*instructions;
-	int		option;
+	t_options	option;
 	int		ret;
 
 	if (ac <= 1)

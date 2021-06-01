@@ -2,15 +2,19 @@
 
 int	main(int ac, char **av)
 {
-	t_info	*info;
-	int		option;
+	t_info		*info;
+	t_options	option;
+	int			flag;
 
 	if (ac <= 1)
 		return (false);
-	option = 0;
+	option = DISABLED;
 	if (!is_valid_arg(av, &option))
 		return (0);
-	if (ps_init_info(&info, av, ac, option) == ERROR)
+	flag = 0;
+	if (option)
+		flag = 1;
+	if (ps_init_info(&info, av, ac, flag) == ERROR)
 		return (0);
 	ps_print_stack(info, "start", -1, option);
 	sort_stack(&info, A);
