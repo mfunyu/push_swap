@@ -1,6 +1,6 @@
 #include "utils.h"
 
-bool	is_valid_arg(char **av, int *option)
+bool	is_valid_arg(char **av, t_options *option)
 {
 	int		error;
 	int		i;
@@ -8,7 +8,17 @@ bool	is_valid_arg(char **av, int *option)
 	i = 0;
 	if (ft_strncmp(av[1], "-v", 3) == 0)
 	{
-		*option = 1;
+		*option = DISPLAY;
+		i++;
+	}
+	else if (ft_strncmp(av[1], "-a", 3) == 0)
+	{
+		*option = AUTO;
+		i++;
+	}
+	else if (ft_strncmp(av[1], "-c", 3) == 0)
+	{
+		*option = CONTROL;
 		i++;
 	}
 	error = 0;

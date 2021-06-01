@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/08 17:20:53 by mfunyu            #+#    #+#             */
-/*   Updated: 2021/05/17 14:37:44by mfunyu           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef UTILS_H
 # define UTILS_H
 
@@ -26,6 +14,15 @@
 # define ERROR -1
 # define FAILURE 1
 
+typedef enum e_options
+{
+	DISABLED,
+	DISPLAY,
+	AUTO,
+	CONTROL,
+	DEBUG
+}			t_options;
+
 typedef struct s_stack
 {
 	int				elem;
@@ -39,7 +36,7 @@ typedef struct s_stack
 /*
 ** check
 */
-bool	is_valid_arg(char **av, int *option);
+bool	is_valid_arg(char **av, t_options *option);
 bool	is_sorted(t_stack *stack_a, t_stack *stack_b);
 
 /*
