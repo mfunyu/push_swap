@@ -2,6 +2,9 @@
 
 void	skip_or_sort_stack_a(t_info **info, t_stack **src, t_stack **dst)
 {
+	// if ((*dst)->order == (*info)->sorted_id + 1
+	// 	&& (*src)->prev->prev->order == (*info)->sorted_id)
+	// 	exec_add_instructions(dst, src, info, pa);
 	if ((*src)->order == (*info)->sorted_id + 1
 		&& (*src)->prev->prev->order == (*info)->sorted_id)
 	{
@@ -31,6 +34,13 @@ void	skip_or_sort_stack_b(t_info **info, t_stack **src, t_stack **dst)
 		(*info)->sorted_id++;
 		return ;
 	}
+	else if ((*src)->order == (*info)->sorted_id + 2
+		&& (*src)->next->order == (*info)->sorted_id + 1)
+	{
+		exec_add_instructions(src, dst, info, sb);
+		skip_or_sort_stack_b(info, src, dst);
+		return ;
+	}
 	exec_add_instructions(src, dst, info, rb);
 }
 
@@ -38,9 +48,16 @@ void	split_stack_a(t_info **info, int pivot_a)
 {
 	t_stack		*working;
 	int			degree;
+	int			tmp;
+	int			tmp2;
 
 	degree = 0;
 	working = (*info)->stack_a;
+	if (pivot_a - (*info)->a_min > 6)
+	{
+		tmp = (pivot_a - (*info)->a_min) / 2 + (*info)->a_min;
+		tmp2 = (tmp - (*info)->a_min) / 2 + (*info)->a_min;
+	}
 	while (!working->nil && !working->sorted)
 	{
 		if (working->order <= pivot_a && !working->sorted)
@@ -52,6 +69,8 @@ void	split_stack_a(t_info **info, int pivot_a)
 				degree--;
 			}
 			skip_or_sort_stack_a(info, &(*info)->stack_a, &(*info)->stack_b);
+			if (tmp2 <= (*info)->stack_b->order && (*info)->stack_b->order <= tmp)
+				exec_add_instructions(&(*info)->stack_b, NULL, info, rb);
 			working = (*info)->stack_a;
 			continue ;
 		}
