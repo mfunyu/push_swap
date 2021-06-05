@@ -32,7 +32,7 @@ PS_SRCS_FILES		:= push_swap.c \
 						stack_count.c \
 						stack_split.c \
 						stacks_init.c \
-						terminal_size.c
+						option_control.c
 PS_SRCS				:= $(addprefix $(PS_SRCS_DIR)/, $(PS_SRCS_FILES))
 PS_OBJS				:= $(PS_SRCS:.c=.o)
 PS_OBJS				+= $(OBJS)
