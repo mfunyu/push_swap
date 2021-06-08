@@ -2,9 +2,6 @@
 
 void	skip_or_sort_stack_a(t_info **info, t_stack **src, t_stack **dst)
 {
-	// if ((*dst)->order == (*info)->sorted_id + 1
-	// 	&& (*src)->prev->prev->order == (*info)->sorted_id)
-	// 	exec_add_instructions(dst, src, info, pa);
 	if ((*src)->order == (*info)->sorted_id + 1
 		&& (*src)->prev->prev->order == (*info)->sorted_id)
 	{
@@ -44,6 +41,15 @@ void	skip_or_sort_stack_b(t_info **info, t_stack **src, t_stack **dst)
 	exec_add_instructions(src, dst, info, rb);
 }
 
+void	check_for_rb(t_info **info, int pivot_a)
+{
+	int		pivot;
+
+	pivot = (pivot_a - (*info)->sorted_id) / 2 + (*info)->sorted_id;
+	if ((*info)->stack_b->order <= pivot)
+		exec_add_instructions(&(*info)->stack_b, NULL, info, rb);
+}
+
 void	split_stack_a(t_info **info, int pivot_a)
 {
 	t_stack		*working;
@@ -66,6 +72,7 @@ void	split_stack_a(t_info **info, int pivot_a)
 			{
 				exec_add_instructions(&(*info)->stack_a, &(*info)->stack_b,
 					info, ra);
+				check_for_rb(info, pivot_a);
 				degree--;
 			}
 			skip_or_sort_stack_a(info, &(*info)->stack_a, &(*info)->stack_b);
