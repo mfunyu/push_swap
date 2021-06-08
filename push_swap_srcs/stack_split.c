@@ -54,16 +54,9 @@ void	split_stack_a(t_info **info, int pivot_a)
 {
 	t_stack		*working;
 	int			degree;
-	int			tmp;
-	int			tmp2;
 
 	degree = 0;
 	working = (*info)->stack_a;
-	if (pivot_a - (*info)->a_min > 6)
-	{
-		tmp = (pivot_a - (*info)->a_min) / 2 + (*info)->a_min;
-		tmp2 = (tmp - (*info)->a_min) / 2 + (*info)->a_min;
-	}
 	while (!working->nil && !working->sorted)
 	{
 		if (working->order <= pivot_a && !working->sorted)
@@ -76,8 +69,6 @@ void	split_stack_a(t_info **info, int pivot_a)
 				degree--;
 			}
 			skip_or_sort_stack_a(info, &(*info)->stack_a, &(*info)->stack_b);
-			if (tmp2 <= (*info)->stack_b->order && (*info)->stack_b->order <= tmp)
-				exec_add_instructions(&(*info)->stack_b, NULL, info, rb);
 			working = (*info)->stack_a;
 			continue ;
 		}
