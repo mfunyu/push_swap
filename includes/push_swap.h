@@ -7,7 +7,7 @@
 # define SHIFT_CURSOR "\x1b[999B"
 # define CURSOR_POSITION "\x1b[6n"
 
-# define SLEEP_LENGTH 2000000
+# define SLEEP_LENGTH 1500000
 # define STACK_WIDTH 11
 
 # define C_CYAN "\e[36m"
@@ -67,10 +67,8 @@ typedef struct s_info
 /*
 ** inits
 */
-int		ps_init_info(t_info **info, char **av, int ac, int option);
-void	init_stacklst_a(t_stack **stack_a, t_stack *sorted_stack,
-			char **av, int a_len);
-int		check_av_dup(t_stack *sorted_stack);
+int		init_info(t_info **info, char **av, int ac, int option);
+int		init_stack_a(t_stack **stack_a, char **av, int a_len);
 
 /*
 ** stack managements
@@ -106,10 +104,7 @@ int		simplelst_pop(t_simple **simplelst);
 void	print_instructions(t_info *info);
 void	print_operation(t_op_name name, bool newline);
 void	print_stack(t_info *info, char *title, t_op_name name, t_options option);
-void	print_format_a(int i, char *order, char *elem, int max);
-void	print_format(char *order, char *elem, bool is_stack_b);
-void	print_line(t_stack *lst_a, t_stack *lst_b);
-
+void	print_lines(t_stack *lst_a, t_stack *lst_b, t_options flag);
 /*
 ** terminal_control.c
 */

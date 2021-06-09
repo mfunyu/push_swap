@@ -6,6 +6,8 @@ t_stack	*calc_order(char **av, int a_len)
 	int			i;
 
 	sorted_stack = malloc(sizeof(t_stack) * (a_len + 1));
+	if (!sorted_stack)
+		return (NULL);
 	i = 0;
 	while (i < a_len)
 	{
@@ -77,4 +79,23 @@ void	init_stacklst_a(t_stack **stack_a, t_stack *sorted_stack,
 		i++;
 	}
 	null_free((void **)&sorted_stack);
+}
+
+int	init_stack_a(t_stack **stack_a, char **av, int a_len)
+{
+	t_stack		*sorted_stack;
+
+	sorted_stack = calc_order(av, a_len);
+	if (!sorted_stack)
+		exit(EXIT_FAILURE);
+	if (check_av_dup(sorted_stack) == ERROR)
+		return (ERROR);
+	*stack_a = stacklst_nil();
+	if (!*stack_a)
+	{
+		null_free((void **)&sorted_stack);
+		exit(EXIT_FAILURE);
+	}
+	init_stacklst_a(stack_a, sorted_stack, av, a_len);
+	return (SUCCESS);
 }

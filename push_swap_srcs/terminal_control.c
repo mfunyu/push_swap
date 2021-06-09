@@ -21,7 +21,7 @@ int	get_terminal_height(void)
 	char	c;
 
 	ft_putstr_fd(SHIFT_CURSOR, STDOUT_FILENO);
-	ft_putendl_fd("Setting up the height: please press the Enter", STDOUT_FILENO);
+	ft_putendl_fd("Terminal Height Setup: press the Enter", STDOUT_FILENO);
 	ft_putstr_fd(CURSOR_POSITION, STDOUT_FILENO);
 	height = 0;
 	while (1)
@@ -30,8 +30,13 @@ int	get_terminal_height(void)
 		if (ft_isdigit(c))
 			height = height * 10 + (c - '0');
 		if (c == ';')
+		{
+			read(STDIN_FILENO, &c, 1);
+			read(STDIN_FILENO, &c, 1);
+			read(STDIN_FILENO, &c, 1);
 			break ;
+		}
 	}
+	ft_putstr_fd(CLEAR_SCREEN, STDOUT_FILENO);
 	return (height);
 }
-

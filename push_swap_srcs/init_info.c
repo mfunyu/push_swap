@@ -1,22 +1,5 @@
 #include "push_swap.h"
 
-int	init_stack_a(t_stack **stack_a, char **av, int a_len)
-{
-	t_stack		*sorted_stack;
-
-	sorted_stack = calc_order(av, a_len);
-	if (check_av_dup(sorted_stack) == ERROR)
-		return (ERROR);
-	*stack_a = stacklst_nil();
-	if (!*stack_a)
-	{
-		null_free((void **)&sorted_stack);
-		exit(EXIT_FAILURE);
-	}
-	init_stacklst_a(stack_a, sorted_stack, av, a_len);
-	return (SUCCESS);
-}
-
 void	init_t_info(t_info **info, int a_index,
 									t_stack **stack_a, t_stack **stack_b)
 {
@@ -35,7 +18,7 @@ void	init_t_info(t_info **info, int a_index,
 	(*info)->pivot = NULL;
 }
 
-int	ps_init_info(t_info **info, char **av, int ac, int option)
+int	init_info(t_info **info, char **av, int ac, int option)
 {
 	t_stack		*stack_a;
 	t_stack		*stack_b;
