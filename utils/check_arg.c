@@ -10,9 +10,9 @@ bool	is_valid_arg(char **av, t_options *option)
 	{
 		i++;
 		if (ft_strncmp(av[1], "-v", 3) == 0)
-			*option = DISPLAY;
+			*option = DISPLAYALL;
 		else if (ft_strncmp(av[1], "-a", 3) == 0)
-			*option = AUTO;
+			*option = AUTOPLAY;
 		else if (ft_strncmp(av[1], "-c", 3) == 0)
 			*option = CONTROL;
 		else

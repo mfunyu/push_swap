@@ -1,9 +1,6 @@
 #ifndef UTILS_H
 # define UTILS_H
 
-// delete later
-# include <stdio.h>
-
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdbool.h>
@@ -16,11 +13,10 @@
 
 typedef enum e_options
 {
-	DISABLED,
-	DISPLAY,
-	AUTO,
-	CONTROL,
-	DEBUG
+	NORMAL,
+	DISPLAYALL,
+	AUTOPLAY,
+	CONTROL
 }			t_options;
 
 typedef struct s_stack
