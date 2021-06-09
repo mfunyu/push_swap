@@ -40,7 +40,6 @@ PS_OBJS				+= $(OBJS)
 CHECKER				:= checker
 CHECKER_SRCS_DIR	:= checker_srcs
 CHECKER_SRCS_FILES	:= checker.c \
-						ch_print_stack.c \
 						ch_init_stacks.c \
 						executer.c \
 						reader.c \

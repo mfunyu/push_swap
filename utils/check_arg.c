@@ -6,20 +6,17 @@ bool	is_valid_arg(char **av, t_options *option)
 	int		i;
 
 	i = 0;
-	if (ft_strncmp(av[1], "-v", 3) == 0)
+	if (option)
 	{
-		*option = DISPLAY;
 		i++;
-	}
-	else if (ft_strncmp(av[1], "-a", 3) == 0)
-	{
-		*option = AUTO;
-		i++;
-	}
-	else if (ft_strncmp(av[1], "-c", 3) == 0)
-	{
-		*option = CONTROL;
-		i++;
+		if (ft_strncmp(av[1], "-v", 3) == 0)
+			*option = DISPLAY;
+		else if (ft_strncmp(av[1], "-a", 3) == 0)
+			*option = AUTO;
+		else if (ft_strncmp(av[1], "-c", 3) == 0)
+			*option = CONTROL;
+		else
+			i = 0;
 	}
 	error = 0;
 	while (av[++i] && !error)

@@ -27,7 +27,7 @@ void	execute_operation(char *operation, t_stack **stack_a, t_stack **stack_b)
 }
 
 void	execute_instructions(t_stack **stack_a, t_stack **stack_b,
-									t_list *instructions, int option)
+									t_list *instructions)
 {
 	t_list		*operation;
 
@@ -35,7 +35,6 @@ void	execute_instructions(t_stack **stack_a, t_stack **stack_b,
 	while (operation)
 	{
 		execute_operation(operation->content, stack_a, stack_b);
-		ch_print_stack(*stack_a, *stack_b, operation->content, option);
 		operation = operation->next;
 	}
 }

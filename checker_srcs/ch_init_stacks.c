@@ -26,7 +26,7 @@ int	check_dup_add_back(t_stack **stack_a, t_stack *new)
 	return (SUCCESS);
 }
 
-int	ch_init_stacks(t_stack **stack_a, t_stack **stack_b, char **av, int option)
+int	ch_init_stacks(t_stack **stack_a, t_stack **stack_b, char **av)
 {
 	t_stack		*new;
 	t_stack		*nil;
@@ -37,8 +37,6 @@ int	ch_init_stacks(t_stack **stack_a, t_stack **stack_b, char **av, int option)
 		exit(EXIT_FAILURE);
 	*stack_a = NULL;
 	i = 0;
-	if (option)
-		i = 1;
 	while (av[++i])
 	{
 		new = stacklst_new(ft_atoi(av[i]));
