@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 	if (ac <= 1)
 		return (SUCCESS);
 	if (!is_valid_arg(av, NULL))
-		return (ERROR);
+		return (SUCCESS);
 	if (ch_init_stacks(&stack_a, &stack_b, av) == ERROR)
 		return (clear_return(&stack_a, &stack_b));
 	ret = read_instructions(&instructions);
