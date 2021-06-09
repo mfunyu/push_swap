@@ -53,20 +53,21 @@ void	print_a_line(t_stack *lst_a, t_stack *lst_b, int index, int max)
 		ft_putendl_fd("", STDOUT_FILENO);
 }
 
-void	print_lines_fit(t_stack *lst_a, t_stack *lst_b, int stack_height, t_options flag)
+void	print_lines_fit(t_stack *lst_a, t_stack *lst_b, int stack_height,
+																t_options flag)
 {
 	static int	max;
 	t_stack		*last;
 	int			len_a;
 	int			i;
 
-	len_a = stack_count(lst_a);
+	len_a = stack_count(lst_a) - 1;
 	if (!max)
 		max = len_a;
 	i = 0;
 	last = lst_a->prev->prev;
-	while ((!lst_a->nil || (lst_b && !lst_b->nil))
-		&& (i < stack_height || flag == DISPLAYALL || len_a <= stack_height + 2))
+	while ((!lst_a->nil || (lst_b && !lst_b->nil)) && (i < stack_height
+			|| flag == DISPLAYALL || len_a <= stack_height + 1))
 	{
 		print_a_line(lst_a, lst_b, i++, max);
 		if (!lst_a->nil)
@@ -74,11 +75,11 @@ void	print_lines_fit(t_stack *lst_a, t_stack *lst_b, int stack_height, t_options
 		if (lst_b && !lst_b->nil)
 			lst_b = lst_b->next;
 	}
-	if (flag == DISPLAYALL || len_a <= stack_height + 2)
+	if (flag == DISPLAYALL || len_a <= stack_height + 1)
 		return ;
 	ft_putendl_fd("      (abbreviated)", STDOUT_FILENO);
 	if (!lst_a->nil)
-		print_format_a(len_a - 1, ft_itoa(last->order), ft_itoa(last->elem), max);
+		print_format_a(len_a, ft_itoa(last->order), ft_itoa(last->elem), max);
 	ft_putendl_fd("", STDOUT_FILENO);
 }
 

@@ -87,6 +87,8 @@ void	sort_five(t_info **info, int len);
 void	sort_all(t_info **info);
 void	split_stack_a(t_info **info, int pivot_a);
 void	split_stack_b(t_info **info, int pivot_b);
+void	push_or_sort_stack_a(t_info **info, t_stack **src, t_stack **dst);
+void	skip_or_sort_stack_b(t_info **info, t_stack **src, t_stack **dst);
 
 void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
 			t_info **info, t_op_name op_name);
@@ -103,7 +105,8 @@ int		simplelst_pop(t_simple **simplelst);
 */
 void	print_instructions(t_info *info);
 void	print_operation(t_op_name name, bool newline);
-void	print_stack(t_info *info, char *title, t_op_name name, t_options option);
+void	print_stack(t_info *info, char *title, t_op_name name,
+			t_options option);
 void	print_lines(t_stack *lst_a, t_stack *lst_b, t_options flag);
 /*
 ** terminal_control.c

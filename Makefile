@@ -19,8 +19,11 @@ PS_SRCS_DIR			:= push_swap_srcs
 PS_SRCS_FILES		:= push_swap.c \
 						exec_add_instructions.c \
 						clear.c \
+						init_info.c \
+						init_stack_a.c \
 						print_instructions.c \
 						print_stack.c \
+						print_lines.c \
 						qsort.c \
 						simplelst_utils.c \
 						sort_all.c \
@@ -28,10 +31,9 @@ PS_SRCS_FILES		:= push_swap.c \
 						sort_stack.c \
 						sort_three.c \
 						sort_two.c \
-						stack_a_init_utils.c \
 						stack_count.c \
+						stack_mv_or_sort.c \
 						stack_split.c \
-						stacks_init.c \
 						terminal_control.c
 PS_SRCS				:= $(addprefix $(PS_SRCS_DIR)/, $(PS_SRCS_FILES))
 PS_OBJS				:= $(PS_SRCS:.c=.o)
