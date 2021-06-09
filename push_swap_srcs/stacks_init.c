@@ -4,7 +4,7 @@ int	init_stack_a(t_stack **stack_a, char **av, int a_len)
 {
 	t_stack		*sorted_stack;
 
-	sorted_stack = get_order(av, a_len);
+	sorted_stack = calc_order(av, a_len);
 	if (check_av_dup(sorted_stack) == ERROR)
 		return (ERROR);
 	*stack_a = stacklst_nil();

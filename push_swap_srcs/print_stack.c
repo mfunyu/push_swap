@@ -80,7 +80,7 @@ void	ps_print_a_line(t_stack *lst_a, t_stack *lst_b, int index, int max)
 		ft_putendl_fd("", STDOUT_FILENO);
 }
 
-void	ps_print_lines_fit(t_stack *lst_a, t_stack *lst_b, int height, int max)
+void	print_lines_fit(t_stack *lst_a, t_stack *lst_b, int height, int max)
 {
 	t_stack	*last;
 	int		len_a;
@@ -104,7 +104,7 @@ void	ps_print_lines_fit(t_stack *lst_a, t_stack *lst_b, int height, int max)
 	ft_putendl_fd("", STDOUT_FILENO);
 }
 
-void	ps_print_lines(t_stack *lst_a, t_stack *lst_b, t_options flag)
+void	print_lines(t_stack *lst_a, t_stack *lst_b, t_options flag)
 {
 	static int	height;
 	static int	max;
@@ -130,10 +130,10 @@ void	ps_print_lines(t_stack *lst_a, t_stack *lst_b, t_options flag)
 		}
 		return ;
 	}
-	ps_print_lines_fit(lst_a, lst_b, height - 1, max);
+	print_lines_fit(lst_a, lst_b, height - 1, max);
 }
 
-void	ps_print_stack(t_info *info, char *title, t_op_name name, t_options option)
+void	print_stack(t_info *info, char *title, t_op_name name, t_options option)
 {
 	static t_options	flag;
 	char				tmp;
@@ -142,7 +142,7 @@ void	ps_print_stack(t_info *info, char *title, t_op_name name, t_options option)
 		flag = option;
 	if (flag == DISABLED)
 		return ;
-	ps_print_lines(info->stack_a, info->stack_b, flag);
+	print_lines(info->stack_a, info->stack_b, flag);
 	print_title(name, title, flag);
 	if (flag == AUTO)
 		sleep_and_clear();

@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-t_stack	*get_order(char **av, int a_len)
+t_stack	*calc_order(char **av, int a_len)
 {
 	t_stack		*sorted_stack;
 	int			i;
@@ -41,7 +41,7 @@ int	check_av_dup(t_stack *sorted_stack)
 	return (SUCCESS);
 }
 
-int	find_order(t_stack *sorted_stack, int elem)
+int	search_order(t_stack *sorted_stack, int elem)
 {
 	int		i;
 
@@ -70,7 +70,7 @@ void	init_stacklst_a(t_stack **stack_a, t_stack *sorted_stack,
 			null_free((void **)&sorted_stack);
 			clear_exit(stack_a, NULL, NULL, false);
 		}
-		new->order = find_order(sorted_stack, new->elem);
+		new->order = search_order(sorted_stack, new->elem);
 		stacklst_insert((*stack_a)->prev->prev, (*stack_a)->prev, new);
 		if ((*stack_a)->nil)
 			*stack_a = new;

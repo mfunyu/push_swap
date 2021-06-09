@@ -18,9 +18,9 @@ OBJS				:= $(SRCS:.c=.o)
 PS_SRCS_DIR			:= push_swap_srcs
 PS_SRCS_FILES		:= push_swap.c \
 						exec_add_instructions.c \
-						info_clear.c \
-						ps_print_instructions.c \
-						ps_print_stack.c \
+						clear.c \
+						print_instructions.c \
+						print_stack.c \
 						qsort.c \
 						simplelst_utils.c \
 						sort_all.c \
@@ -32,7 +32,7 @@ PS_SRCS_FILES		:= push_swap.c \
 						stack_count.c \
 						stack_split.c \
 						stacks_init.c \
-						option_control.c
+						terminal_control.c
 PS_SRCS				:= $(addprefix $(PS_SRCS_DIR)/, $(PS_SRCS_FILES))
 PS_OBJS				:= $(PS_SRCS:.c=.o)
 PS_OBJS				+= $(OBJS)

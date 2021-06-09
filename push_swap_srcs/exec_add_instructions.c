@@ -122,5 +122,5 @@ void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
 	else if (op_type == revrotate)
 		operation_revrotate_one(stacksrc);
 	prev = op_name;
-	ps_print_stack(*info, NULL, op_name, 0);
+	print_stack(*info, NULL, op_name, 0);
 }

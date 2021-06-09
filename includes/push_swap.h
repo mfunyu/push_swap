@@ -68,14 +68,16 @@ typedef struct s_info
 ** inits
 */
 int		ps_init_info(t_info **info, char **av, int ac, int option);
-int		init_stacks(t_stack **stack_a, t_stack **stack_b, char **av, int ac);
-void	stacklst_init(t_stack **head, int elem);
-
-t_stack	*get_order(char **av, int a_len);
-int		check_av_dup(t_stack *sorted_stack);
 void	init_stacklst_a(t_stack **stack_a, t_stack *sorted_stack,
 			char **av, int a_len);
+int		check_av_dup(t_stack *sorted_stack);
+
+/*
+** stack managements
+*/
+t_stack	*calc_order(char **av, int a_len);
 void	qsort_stack(t_stack sort_stack[], int first, int last);
+int		stack_count(t_stack *lst);
 
 /*
 ** sorts
@@ -88,15 +90,11 @@ void	sort_all(t_info **info);
 void	split_stack_a(t_info **info, int pivot_a);
 void	split_stack_b(t_info **info, int pivot_b);
 
-/*
-** stack managements
-*/
-int		stack_count(t_stack *lst);
 void	exec_add_instructions(t_stack **stacksrc, t_stack **stackdst,
 			t_info **info, t_op_name op_name);
 
 /*
-** simplelst utils
+** simplelst_utils.c
 */
 int		simplelst_add_front(t_simple **simplelst, t_op_name value);
 int		simplelst_add_back(t_simple **simplelst, t_op_name value);
@@ -107,15 +105,19 @@ int		simplelst_pop(t_simple **simplelst);
 */
 void	print_instructions(t_info *info);
 void	print_operation(t_op_name name, bool newline);
-void	ps_print_stack(t_info *info, char *title, t_op_name name, t_options option);
+void	print_stack(t_info *info, char *title, t_op_name name, t_options option);
 void	print_format_a(int i, char *order, char *elem, int max);
 void	print_format(char *order, char *elem, bool is_stack_b);
-void	ps_print_line(t_stack *lst_a, t_stack *lst_b);
-void	ps_print_line_insize(t_stack *lst_a, t_stack *lst_b);
+void	print_line(t_stack *lst_a, t_stack *lst_b);
+
+/*
+** terminal_control.c
+*/
 void	sleep_and_clear(void);
 int		get_terminal_height(void);
+
 /*
-** info clear
+** clear.c
 */
 void	clear_info(t_info **info);
 void	clear_exit(t_stack **stack1, t_stack **stack2, t_info **info, bool set);

@@ -16,9 +16,9 @@ int	main(int ac, char **av)
 		flag = 1;
 	if (ps_init_info(&info, av, ac, flag) == ERROR)
 		return (SUCCESS);
-	ps_print_stack(info, "start", -1, option);
+	print_stack(info, "start", -1, option);
 	sort_stack(&info, A);
-	ps_print_stack(info, "end", -1, 0);
+	print_stack(info, "end", -1, 0);
 	print_instructions(info);
 	clear_info(&info);
 	return (SUCCESS);
