@@ -46,13 +46,13 @@ static int	get_each_operation( t_list **instructions)
 		}
 		new = ft_lstnew_dup(operator);
 		null_free((void **)&operator);
-		if (ft_lstadd_back(instructions, new) == ERROR)
+		if (!new)
 			return (FAILURE);
+		ft_lstadd_back(instructions, new);
 	}
 	if (ret < 0)
 		return (FAILURE);
-	if (ret == 0)
-		null_free((void **)&operator);
+	null_free((void **)&operator);
 	return (SUCCESS);
 }
 
@@ -63,9 +63,6 @@ int	read_instructions(t_list **instructions)
 	*instructions = NULL;
 	ret = get_each_operation(instructions);
 	if (ret != SUCCESS)
-	{
 		ft_lstclear(instructions, free);
-		return (ret);
-	}
-	return (SUCCESS);
+	return (ret);
 }

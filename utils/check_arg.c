@@ -23,7 +23,7 @@ bool	is_valid_arg(char **av, t_options *option)
 		ft_atoi_check(av[i], &error);
 	if (error)
 	{
-		ft_putendl_fd("Error", 2);
+		ft_putendl_fd("Error", STDERR_FILENO);
 		return (false);
 	}
 	return (true);

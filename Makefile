@@ -43,7 +43,6 @@ CHECKER_SRCS_FILES	:= checker.c \
 						ch_init_stacks.c \
 						executer.c \
 						reader.c \
-						stacklst_init.c \
 						stacklst_add_back.c \
 						stacklst_add_front.c \
 						stacklst_last.c \

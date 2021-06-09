@@ -5,24 +5,24 @@ int	check_dup_add_back(t_stack **stack_a, t_stack *new)
 	t_stack		*node;
 
 	if (*stack_a == NULL)
-		*stack_a = new;
-	else
 	{
-		node = *stack_a;
-		while (1)
-		{
-			if (node->elem == new->elem)
-			{
-				stacklst_clear(&new);
-				return (ERROR);
-			}
-			if (!node->next)
-				break ;
-			node = node->next;
-		}
-		node->next = new;
-		new->prev = node;
+		*stack_a = new;
+		return (SUCCESS);
 	}
+	node = *stack_a;
+	while (node)
+	{
+		if (node->elem == new->elem)
+		{
+			stacklst_clear(&new);
+			return (ERROR);
+		}
+		if (!node->next)
+			break ;
+		node = node->next;
+	}
+	node->next = new;
+	new->prev = node;
 	return (SUCCESS);
 }
 
