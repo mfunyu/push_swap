@@ -31,7 +31,7 @@ SRCS	:= ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 			ft_atoi_check.c
 OBJS	:= $(SRCS:.c=.o)
 CC		:= gcc
-CFLAGS	:= -g -Wall -Wextra -Werror
+CFLAGS	:= -Wall -Wextra -Werror
 
 all		: $(NAME)
 
