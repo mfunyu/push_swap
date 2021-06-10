@@ -19,10 +19,10 @@ int	simplelst_add_back(t_simple **simplelst, t_op_name value)
 	t_simple	*new;
 
 	new = malloc(sizeof(t_simple));
-	new->value = value;
-	new->next = NULL;
 	if (!new)
 		return (ERROR);
+	new->value = value;
+	new->next = NULL;
 	if (*simplelst == NULL)
 		*simplelst = new;
 	else
