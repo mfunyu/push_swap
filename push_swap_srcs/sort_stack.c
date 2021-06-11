@@ -9,6 +9,8 @@ void	sort_stack(t_info **info, t_stack_type type)
 		src = &(*info)->stack_a;
 	else
 		src = &(*info)->stack_b;
+	if (is_sorted((*info)->stack_a, (*info)->stack_b))
+		return ;
 	len = stack_count(*src);
 	if (len == 1)
 		return ;
