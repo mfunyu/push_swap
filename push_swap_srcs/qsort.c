@@ -9,51 +9,59 @@ static void	swap_for_qsort(t_stack *x, t_stack *y)
 	*x = tmp;
 }
 
-int	get_pivot(t_stack sort_stack[], int first, int last)
+bool	get_pivot(t_stack sort_stack[], int first, int last, int *pivot)
 {
 	while (first < last)
 	{
 		if (sort_stack[first].elem > sort_stack[first + 1].elem)
-			return (sort_stack[first].elem);
+		{
+			*pivot = sort_stack[first].elem;
+			return (false);
+		}
 		if (sort_stack[first].elem < sort_stack[first + 1].elem)
-			return (sort_stack[first + 1].elem);
+		{
+			*pivot = sort_stack[first + 1].elem;
+			return (false);
+		}
 		first++;
 	}
-	return (-1);
+	return (true);
 }
 
-int	partition(t_stack sort_stack[], int first, int last)
+int	partition(t_stack sort_stack[], int first, int last, int *pivot)
 {
 	int		i;
 	int		j;
-	int		pivot;
+	bool	done;
 
 	i = first;
 	j = last;
-	pivot = get_pivot(sort_stack, first, last);
-	if (pivot == -1)
-		return (pivot);
+	done = get_pivot(sort_stack, first, last, pivot);
+	if (done)
+		return (done);
 	while (i < j)
 	{
-		while (i < last && sort_stack[i].elem < pivot)
+		while (i < last && sort_stack[i].elem < *pivot)
 			i++;
-		while (first < j && pivot <= sort_stack[j].elem)
+		while (first < j && *pivot <= sort_stack[j].elem)
 			j--;
 		if (i >= j)
 			break ;
 		swap_for_qsort(&sort_stack[i], &sort_stack[j]);
 	}
-	return (i);
+	*pivot = i;
+	return (false);
 }
 
 void	qsort_stack(t_stack sort_stack[], int first, int last)
 {
 	int		pivot;
+	bool	done;
 
 	if (first >= last)
 		return ;
-	pivot = partition(sort_stack, first, last);
-	if (pivot == -1)
+	done = partition(sort_stack, first, last, &pivot);
+	if (done)
 		return ;
 	qsort_stack(sort_stack, first, pivot - 1);
 	qsort_stack(sort_stack, pivot, last);
