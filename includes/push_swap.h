@@ -83,7 +83,7 @@ int		stack_count(t_stack *lst);
 void	sort_stack(t_info **info, t_stack_type type);
 void	sort_two(t_stack **stack, t_info **info, t_stack_type type);
 void	sort_three(t_stack **stack, t_info **info, t_stack_type type);
-void	sort_five(t_info **info, int len);
+void	sort_five(t_info **info);
 void	sort_all(t_info **info);
 void	split_stack_a(t_info **info, int pivot_a);
 void	split_stack_b(t_info **info, int pivot_b);

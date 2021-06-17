@@ -19,7 +19,7 @@ void	sort_stack(t_info **info, t_stack_type type)
 	else if (len == 3)
 		sort_three(src, info, type);
 	else if (len <= 5)
-		sort_five(info, len);
+		sort_five(info);
 	else
 		sort_all(info);
 }
