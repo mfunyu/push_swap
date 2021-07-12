@@ -4,6 +4,8 @@ void	check_for_rb(t_info **info, int pivot_a)
 {
 	int		pivot;
 
+	if ((*info)->stack_b->next->nil)
+		return ;
 	pivot = (pivot_a - (*info)->sorted_id) / 2 + (*info)->sorted_id;
 	if ((*info)->stack_b->order <= pivot)
 		exec_add_instructions(&(*info)->stack_b, NULL, info, rb);
