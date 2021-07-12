@@ -61,7 +61,7 @@ LIBS		:= -L$(LIBFT) -lft
 CC			:= gcc
 CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES)
 
-all		: $(NAME) $(CHECKER)
+all		: $(NAME)
 
 $(NAME)	: $(LIBFT) $(PS_OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(PS_OBJS) $(LIBS)
